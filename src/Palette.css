@@ -1,0 +1,46 @@
+.Palette {
+  height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.Palette-header {
+  flex: 0 0 auto;
+}
+
+.Palette-colors {
+  /* breakpoint */
+  --w: 450px;
+  /* num of columns when over breakpoint */
+  --n: 5;
+  /* num of columns when under breakpoint */
+  --m: 1;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(
+      clamp(
+        100% / (var(--n) + 1) + 0.1%,
+        (var(--w) - 100vw) * 1000,
+        100% / (var(--m) + 1) + 0.1%
+      ),
+      1fr
+    )
+  );
+}
+
+.Palette-footer {
+  flex: 0 0 auto;
+  background: #fff;
+}
+
+.Palette-footer-name {
+  font-size: .9rem;
+  font-weight: 600;
+  text-align: right;
+  padding: .5rem 1rem;
+  margin: 0;
+}
+

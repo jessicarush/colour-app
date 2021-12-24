@@ -1,0 +1,52 @@
+.PaletteList {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.PaletteList-head {
+  flex: 0 0 auto;
+  background: #fff;
+}
+
+.PaletteList-palettes {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  align-self: center;
+  /* first breakpoint */
+  --w1: 800px;
+  /* number of columns when over first breakpoint */
+  --n: 4;
+  /* second breakpoint */
+  --w2: 400px;
+  /* number of columns when over second breakpoint */
+  --m: 2;
+  /* cols will be 100% when under second breakpoint */
+
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      clamp(
+        clamp(
+          100% / (var(--n) + 1) + 0.1%,
+          (var(--w1) - 100vw) * 1000,
+          100% / (var(--m) + 1) + 0.1%
+        ),
+        (var(--w2) - 100vw) * 1000,
+        100%
+      ),
+      1fr
+    )
+  );
+}
+
+.PaletteList-footer {
+  flex: 0 0 auto;
+  background: #fff;
+}

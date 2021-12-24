@@ -1,0 +1,67 @@
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: rgb(247,247,247);
+}
+
+.Navbar-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: 1.1rem 1rem 1.1rem .75rem;
+  color: rgb(35,35,39);
+  border-right: dotted 1px gainsboro;
+  background: #fff;
+}
+
+.Navbar-header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.Navbar-head {
+  flex: 0 0 auto;
+}
+
+.Navbar-slider-label {
+  flex: 0 0 auto;
+  font-size: .7rem;
+  font-weight: 500;
+  padding: 0 .5rem 0 1rem;
+  color: #000;
+}
+
+.Navbar-slider {
+  flex: 1 1 auto;
+  min-width: 75px;
+  max-width: 300px;
+  align-self: center;
+}
+
+.Navbar-format {
+  flex: 1 1 auto;
+  min-width: 80px;
+  max-width: 120px;
+  padding: 0 1rem;
+  margin-left: auto;
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}
+
+.rc-slider-rail {
+  height: .3rem;
+  background-color: rgb(200,200,200);
+}
+
+.rc-slider-handle,
+.rc-slider-handle:active,
+.rc-slider-handle:focus,
+.rc-slider-handle:hover {
+  background-color: rgb(30,30,30);
+  border: solid 2px white;
+  outline: none;
+
+}
