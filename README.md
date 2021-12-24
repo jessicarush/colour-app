@@ -1,4 +1,8 @@
-# Color App packages and libraries
+# Color Palette App
+
+A practice project built with React.
+
+## Packages and libraries
 
 - [Create React App](https://github.com/facebook/create-react-app)
 - [Material UI](https://mui.com)
