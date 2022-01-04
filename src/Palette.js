@@ -10,11 +10,14 @@ import NotFound from './NotFound';
 
 
 function Palette(props) {
-  //URL params
-  const params = useParams();
   // State
   const [level, setLevel] = useState(500);
   const [colorType, setColorType] = useState('hex');
+  // URL params
+  const params = useParams();
+  const seedPalette = findPalette(params.id);
+
+  let renderElements;
 
   function updateLevel(newLevel) {
     setLevel(newLevel);
@@ -24,20 +27,17 @@ function Palette(props) {
     setColorType(colorType);
   }
 
-  // Get Palette
   function findPalette(id) {
     return seedPalettes.find(palette => palette.id === id);
   }
 
-  const seedPalette = findPalette(params.id);
-  let renderElements;
-
   if (seedPalette) {
+    // Get Palette
     const fullPalette = generatePalette(seedPalette);
     const palette = fullPalette.colors[level];
     const colorChips = palette.map(color => (
-      <ColorChip key={uuid()} color={color} colorType={colorType} />
-    ))
+      <ColorChip key={uuid()} color={color} colorType={colorType} paletteId={fullPalette.id} />
+    ));
 
     renderElements = (
       <div className="Palette">

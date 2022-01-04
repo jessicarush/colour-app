@@ -10,15 +10,15 @@
 .PaletteChip-color {
   width: 20%;
   box-sizing: border-box;
-  height: 1.75rem;
+  height: 2rem;
 }
 
 .PaletteChip-name {
   background: #fff;
-  color: rgb(94, 93, 93);
-  font-weight: 500;
+  color: rgb(100, 100, 100);
+  font-weight: 400;
   font-size: .75rem;
-  padding: .5rem;
+  padding: .75rem;
   margin: 0;
   text-align: left;
   width: 100%;

@@ -51,7 +51,7 @@ function Navbar(props) {
     <header className="Navbar">
       <div className="Navbar-head">
         <h1 className="Navbar-header">
-          <Link to={"/"}>Color Palettes</Link>
+          <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
         </h1>
       </div>
       <div className="Navbar-slider-label">

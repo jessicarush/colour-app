@@ -3,6 +3,11 @@ import chroma from 'chroma-js';
 
 const levels = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 
+function toKebabCase(string) {
+  // Returns a kebab case string
+  return string.toLowerCase().replace(/ /g, '-');
+}
+
 function getColorRange(hexColor) {
   // Returns an array of [darker color, color, white]
   const startColor = chroma(hexColor).darken(1.5).hex();
@@ -33,7 +38,7 @@ function generatePalette(seedPalette) {
       let level = levels[idx];
       let newColor = {
         name: `${color.name} ${level}`,
-        // id: ?,
+        id: toKebabCase(color.name),
         hex: hexValue,
         rgb: chroma(hexValue).css(),
         rgba: chroma(hexValue).css().replace('rgb', 'rgba').replace(')', ',1)')

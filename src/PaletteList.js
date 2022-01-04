@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import seedPalettes from './seedPalettes';
 import PaletteChip from './PaletteChip';
@@ -15,9 +16,9 @@ function PaletteList(props) {
     <div className="PaletteList">
       <div className="PaletteList-head">
         <h1 className="PaletteList-header">
-          Color Palettes
+          <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
         </h1>
-        <button className="PaletteList-new-btn">+ new palette</button>
+        <button className="PaletteList-new-btn">+ create palette</button>
       </div>
       <div className="PaletteList-palettes">
         {/* Palettes go here */}

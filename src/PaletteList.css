@@ -7,26 +7,56 @@
 
 .PaletteList-head {
   flex: 0 0 auto;
-  background: #fff;
+  padding: 0 20px;
+  background: whitesmoke;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PaletteList-header {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: .85rem 0;
+}
+
+.PaletteList-header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.PaletteList-new-btn {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  background: transparent;
+  color: #000;
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
 }
 
 .PaletteList-palettes {
+  /* first breakpoint */
+  --w1: 800px; /* number of columns when over first breakpoint */
+  --n: 4;
+  /* second breakpoint */
+  --w2: 600px; /* number of columns when over second breakpoint */
+  --m: 3;
+  /* third breakpoint*/
+  --w3: 400px;
+  --p: 2; /* number of columns when over third breakpoint */
+  /* cols will be 100% when under third breakpoint */
+
   flex: 0 0 auto;
   box-sizing: border-box;
   padding: 20px;
   width: 100%;
   max-width: 1200px;
   align-self: center;
-  /* first breakpoint */
-  --w1: 800px;
-  /* number of columns when over first breakpoint */
-  --n: 4;
-  /* second breakpoint */
-  --w2: 400px;
-  /* number of columns when over second breakpoint */
-  --m: 2;
-  /* cols will be 100% when under second breakpoint */
-
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(
@@ -34,11 +64,15 @@
     minmax(
       clamp(
         clamp(
-          100% / (var(--n) + 1) + 0.1%,
-          (var(--w1) - 100vw) * 1000,
-          100% / (var(--m) + 1) + 0.1%
+          clamp(
+            100%/ (var(--n) + 1) + 0.1%,
+            (var(--w1) - 100vw) * 1000,
+            100%/ (var(--m) + 1) + 0.1%
+          ),
+          (var(--w2) - 100vw) * 1000,
+          100%/ (var(--p) + 1) + 0.1%
         ),
-        (var(--w2) - 100vw) * 1000,
+        (var(--w3) - 100vw) * 1000,
         100%
       ),
       1fr
