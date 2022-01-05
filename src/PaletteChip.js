@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import './PaletteChip.css';
 
@@ -20,12 +19,10 @@ function PaletteChip(props) {
   }
 
   return (
-    // <Link className="PaletteChip-link" to={`/palette/${props.palette.id}`}>
-      <div className="PaletteChip" onClick={gotoPalette}>
-        {colors}
-        <h2 className="PaletteChip-name">{props.palette.paletteName}</h2>
-      </div>
-    // </Link>
+    <div className="PaletteChip" onClick={gotoPalette}>
+      {colors}
+      <h2 className="PaletteChip-name">{props.palette.paletteName}</h2>
+    </div>
   );
 }
 

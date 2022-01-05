@@ -10,12 +10,12 @@ import NotFound from './NotFound';
 
 
 function Palette(props) {
-  // State
-  const [level, setLevel] = useState(500);
-  const [colorType, setColorType] = useState('hex');
   // URL params
   const params = useParams();
   const seedPalette = findPalette(params.id);
+  // State
+  const [level, setLevel] = useState(500);
+  const [colorFormat, setColorFormat] = useState('hex');
 
   let renderElements;
 
@@ -23,8 +23,8 @@ function Palette(props) {
     setLevel(newLevel);
   }
 
-  function updateColorType(colorType) {
-    setColorType(colorType);
+  function updateColorFormat(colorFormat) {
+    setColorFormat(colorFormat);
   }
 
   function findPalette(id) {
@@ -36,25 +36,25 @@ function Palette(props) {
     const fullPalette = generatePalette(seedPalette);
     const palette = fullPalette.colors[level];
     const colorChips = palette.map(color => (
-      <ColorChip key={uuid()} color={color} colorType={colorType} paletteId={fullPalette.id} />
+      <ColorChip key={uuid()} color={color} colorFormat={colorFormat} paletteId={fullPalette.id} />
     ));
 
     renderElements = (
       <div className="Palette">
-        {/* Palette navbar */}
+        {/* navbar */}
         <Navbar
-          className="Palette-header"
+          className="Palette-navbar"
           level={level}
           updateLevel={updateLevel}
-          updateColorType={updateColorType}
+          updateColorFormat={updateColorFormat}
         />
 
-        {/* Palette color chips */}
+        {/* color chips */}
         <main className="Palette-colors">
           {colorChips}
         </main>
 
-        {/* Palette footer */}
+        {/* footer */}
         <footer className="Palette-footer">
           <h2 className="Palette-footer-name">{fullPalette.paletteName}</h2>
         </footer>

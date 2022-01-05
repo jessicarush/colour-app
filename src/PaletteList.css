@@ -7,7 +7,7 @@
 
 .PaletteList-head {
   flex: 0 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 0 18px;
   background: whitesmoke;
   display: flex;
   flex-direction: row;
@@ -18,7 +18,7 @@
 .PaletteList-header {
   font-size: 1.3rem;
   font-weight: 500;
-  margin: .85rem 0;
+  margin: 1rem 0;
 }
 
 .PaletteList-header a {

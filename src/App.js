@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PaletteList />} />
         <Route path="/palette/:id" element={<Palette />} />
-        <Route path="/palette/:paletteId/:colorId" element={<ColorShades />} />
+        <Route path="/palette/:paletteId/:colorId/*" element={<ColorShades />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

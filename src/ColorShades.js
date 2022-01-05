@@ -1,67 +1,79 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import ColorChip from './ColorChip';
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 import seedPalettes from './seedPalettes';
 import generatePalette from './helpers';
-// import './ColorShades.css';
+import './ColorShades.css';
 import NotFound from './NotFound';
 
 
 function ColorShades(props) {
-  // State
-  const [colorType, setColorType] = useState('hex');
   // URL params
   const params = useParams();
+  let prevFormat = params['*'];
+  if (!['hex', 'rgb', 'rgba'].includes(prevFormat)) {prevFormat = 'hex';}
   const paletteId = params.paletteId;
   const colorId = params.colorId;
+  // State
+  const [colorFormat, setColorFormat] = useState(prevFormat);
 
-  const colorShades = findColorShades(colorId, paletteId);
   let renderElements;
+  let paletteName;
+  const colorShades = findColorShades(colorId, paletteId);
+
+  function updateColorFormat(colorFormat) {
+    setColorFormat(colorFormat);
+  }
 
   function findPalette(id) {
     return seedPalettes.find(palette => palette.id === id);
   }
 
   function findColorShades(colorId, paletteId) {
-    let colorShades;
+    let shades;
     // Get Palette
     const seedPalette = findPalette(paletteId);
     if (seedPalette) {
+      shades = [];
+      paletteName = seedPalette.paletteName;
       const fullPalette = generatePalette(seedPalette);
       // Get color shades
-      const colorIndex = fullPalette.colors[100].findIndex(c => c.id === colorId);
-      // findIndex returns -1 if item not found
-      if (colorIndex > -1) {
-        colorShades = [];
-        for (let level in fullPalette.colors) {
-          colorShades.push(fullPalette.colors[level][colorIndex]);
-        }
+      for (let level in fullPalette.colors) {
+        shades = shades.concat(
+          fullPalette.colors[level].filter(c => c.id === colorId)
+        );
       }
     }
-    return colorShades;
+    return shades;
   }
 
   if (colorShades) {
+    const colorName = colorShades[0].name.replace(/ [0-9]+$/, '');
     const colorChips = colorShades.map(color => (
-      <ColorChip key={uuid()} color={color} colorType={colorType} />
+      <ColorChip key={uuid()} color={color} colorFormat={colorFormat} />
     ));
 
     renderElements = (
       <div className="ColorShades">
-        {/* Color shades navbar */}
+        {/* navbar */}
+        <Navbar
+          colorFormat={colorFormat}
+          className="ColorShades-navbar"
+          updateColorFormat={updateColorFormat}
+        />
 
-        {/*  Color shades chips */}
+        {/*  color chips */}
         <main className="ColorShades-colors">
           {colorChips}
         </main>
 
-        {/* Color shades footer */}
+        {/* footer */}
         <footer className="ColorShades-footer">
           <h2 className="ColorShades-footer-name">
-            {paletteId}
-            {colorId}
+            {colorName}<span className="ColorShades-footer-light"> / </span>
+            <Link to={`/palette/${paletteId}`}>{paletteName}</Link>
           </h2>
         </footer>
       </div>

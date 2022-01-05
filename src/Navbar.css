@@ -2,16 +2,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: rgb(247,247,247);
+  background: #fff;
 }
 
 .Navbar-header {
   font-weight: 500;
   font-size: 1.3rem;
   margin: 0;
-  padding: .85rem 20px 1rem 20px;
+  padding: 1rem 15px 1.1rem 18px;
   color: #000;
-  border-right: dotted 1px gainsboro;
   background: #fff;
 }
 
@@ -26,7 +25,7 @@
 
 .Navbar-slider-label {
   flex: 0 0 auto;
-  font-size: .7rem;
+  font-size: .65rem;
   font-weight: 500;
   padding: 0 .5rem 0 20px;
   color: #000;
@@ -50,38 +49,54 @@
 }
 
 @media (max-width: 600px) {
-  .Navbar {
+  .Palette-navbar {
     flex-wrap: wrap;
+    background: rgb(247,247,247);
   }
-  .Navbar-head {
+  .Palette-navbar .Navbar-head {
     width: 100%;
   }
-  .Navbar-format {
+  .Palette-navbar .Navbar-format {
     padding-top: .5rem;
     padding-bottom: .5rem;
   }
 }
 
 @media (max-width: 380px) {
-  .Navbar {
+  .Palette-navbar {
     padding-bottom: 1.4rem;
   }
-  .Navbar-head {
+  .Palette-navbar .Navbar-head {
     order: 1;
   }
-  .Navbar-slider-label {
+  .Palette-navbar .Navbar-slider-label {
     order: 3;
   }
-  .Navbar-slider {
+  .Palette-navbar .Navbar-slider {
     order: 4;
   }
-  .Navbar-format {
+  .Palette-navbar .Navbar-format {
     order: 2;
     padding-left: 20px;
     width: 100%;
     max-width: 100%;
     padding-top: .75rem;
     padding-bottom: 1.5rem;
+  }
+
+  .ColorShades-navbar {
+    flex-wrap: wrap;
+    background: rgb(247,247,247);
+  }
+  .ColorShades-navbar .Navbar-head {
+    width: 100%;
+  }
+  .ColorShades-navbar .Navbar-format {
+    padding-left: 20px;
+    width: 100%;
+    max-width: 100%;
+    padding-top: .65rem;
+    padding-bottom: .65rem;
   }
 }
 

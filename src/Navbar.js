@@ -13,12 +13,13 @@ import './Navbar.css';
 
 
 function Navbar(props) {
-  const [colorType, setColorType] = useState('hex');
+  // State
+  const [colorFormat, setColorFormat] = useState(props.colorFormat || 'hex');
   const [msgOpen, setMsgOpen] = React.useState(false);
 
-  function handleColorTypeChange(e) {
-    setColorType(e.target.value);
-    props.updateColorType(e.target.value);
+  function handleColorFormatChange(e) {
+    setColorFormat(e.target.value);
+    props.updateColorFormat(e.target.value);
     handleMsgOpen();
   }
 
@@ -48,24 +49,31 @@ function Navbar(props) {
   )
 
   return (
-    <header className="Navbar">
+    <header className={`Navbar ${props.className}`}>
       <div className="Navbar-head">
         <h1 className="Navbar-header">
           <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
         </h1>
       </div>
-      <div className="Navbar-slider-label">
-        <span>Level: {props.level} </span>
-      </div>
-      <div className="Navbar-slider">
-        <Slider
-          defaultValue={props.level}
-          min={100}
-          max={900}
-          step={100}
-          onAfterChange={props.updateLevel}
-        />
-      </div>
+
+      {/* The slider is only rendered when level prop exists (Palette.js) */}
+      {props.level && (
+        <React.Fragment>
+          <div className="Navbar-slider-label">
+            <span>Level: {props.level} </span>
+          </div>
+          <div className="Navbar-slider">
+            <Slider
+              defaultValue={props.level}
+              min={100}
+              max={900}
+              step={100}
+              onAfterChange={props.updateLevel}
+            />
+          </div>
+        </React.Fragment>
+      )}
+
       <div className="Navbar-format">
         <FormControl variant="standard" fullWidth>
           <InputLabel
@@ -79,9 +87,9 @@ function Navbar(props) {
           <Select
             labelId="color-format-label"
             id="color-format"
-            value={colorType}
+            value={colorFormat}
             label="color-format"
-            onChange={handleColorTypeChange}
+            onChange={handleColorFormatChange}
             sx={{
               fontSize: '.75rem',
               fontWeight: '600'
@@ -100,7 +108,7 @@ function Navbar(props) {
         autoHideDuration={4000}
         message={
           <span id="message-id">
-            Color format changed to {colorType.toUpperCase()}
+            Color format changed to {colorFormat.toUpperCase()}
           </span>
         }
         ContentProps={{ "aria-describedby": "message-id" }}
