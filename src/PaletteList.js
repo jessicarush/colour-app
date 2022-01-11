@@ -17,7 +17,7 @@ function PaletteList(props) {
         <h1 className="PaletteList-header">
           <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
         </h1>
-        <button className="PaletteList-new-btn">+ create palette</button>
+        <Link to={"/create"} className="PaletteList-new-btn">+ create palette</Link>
       </div>
       <div className="PaletteList-palettes">
         {/* Palettes go here */}

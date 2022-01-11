@@ -8,16 +8,16 @@ import generatePalette from './helpers';
 import './ColorShades.css';
 import NotFound from './NotFound';
 
+// Opportunity for improvement: color format should be stored in localStorage
 
 function ColorShades(props) {
   // URL params
   const params = useParams();
-  let prevFormat = params['*'];
-  if (!['hex', 'rgb', 'rgba'].includes(prevFormat)) {prevFormat = 'hex';}
+  const format = ['hex', 'rgb', 'rgba'].includes(params.format) ? params.format : 'hex';
   const paletteId = params.paletteId;
   const colorId = params.colorId;
   // State
-  const [colorFormat, setColorFormat] = useState(prevFormat);
+  const [colorFormat, setColorFormat] = useState(format);
 
   let renderElements;
   let paletteName;

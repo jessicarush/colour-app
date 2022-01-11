@@ -24,7 +24,7 @@ function ColorChip(props) {
     // A minimum contrast of 4.5 is recommended to ensure that text is still
     // readable against a background color.
     const contrast = chroma.contrast(foregroundColor, backgroundColor);
-    return contrast >= 2.25;
+    return contrast >= 2.5;
   }
 
   const goodContrast = analyzeContrast("fff", color);

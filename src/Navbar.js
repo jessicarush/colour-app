@@ -82,7 +82,7 @@ function Navbar(props) {
               fontSize: '.85rem'
             }}
           >
-            Color values
+            Format
           </InputLabel>
           <Select
             labelId="color-format-label"
