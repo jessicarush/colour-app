@@ -16,6 +16,29 @@
   padding-right: 1rem;
 }
 
+.CreatePalette-drawer-header {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem 0 .4rem 0;
+  line-height: normal;
+}
+
+.CreatePalette-drawer-subheader {
+  color: rgb(80,80,80);
+  font-size: .7rem;
+  font-weight: 400;
+  margin: 0 0 2rem 0;
+  line-height: normal;
+}
+
+.CreatePalette-drawer {
+  padding: 0 15px 15px 15px;
+}
+
+.CreatePalette-picker {
+  box-shadow: rgba(0,0,0,.1) 0px 0px 0px 1px, rgba(0,0,0,.1) 0px 0px 10px !important;
+}
+
 .CreatePalette-palette {
   background: whitesmoke;
 }
@@ -23,7 +46,7 @@
 .CreatePalette-Btn {
   border: none;
   margin: 0;
-  padding: .5rem .6rem .4rem .6rem;
+  padding: .4rem .6rem .4rem .6rem;
   background: transparent;
   border-radius: 4px;
   width: auto;
@@ -40,23 +63,68 @@
   cursor: pointer;
   text-decoration: none;
   font-size: .9rem;
-  font-weight: 600;
-  transition: background .5s;
+  font-weight: 500;
+  transition: background .3s;
+  text-align: center;
 }
 
 .CreatePalette-Btn--save {
   color: #fff;
-  background: rgb(56,193,114);
+  background: rgb(12,182,8);
 }
 
 .CreatePalette-Btn--save:hover {
-  background: rgb(45,156,92);
-}
-
-.CreatePalette-Btn--exit {
-  font-weight: 500;
+  background: rgb(10,143,8);
 }
 
 .CreatePalette-Btn--exit:hover {
   background: rgb(230,230,230);
+}
+
+.CreatePalette-Btn--plain {
+  background: rgb(230,230,230);
+  font-size: .75rem;
+}
+
+.CreatePalette-Btn--plain:hover {
+  background: rgb(210,210,210);
+}
+
+.CreatePalette-Btn--add {
+  color: #fff;
+  background: rgb(45,47,50);
+  width: 100%;
+  position: relative;
+  /* to accommodate --add-chip */
+  padding-left: calc(82px);
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+  overflow: hidden;
+}
+
+.CreatePalette-Btn--add:hover {
+  background: rgb(88,88,90);
+}
+
+.CreatePalette-Btn--add-chip {
+  display: block;
+  width: 80px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-right: solid 2px #fff;
+  transition: background .3s;
+}
+
+.CreatePalette-drawer-btns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: .5rem;
+}
+
+.CreatePalette-drawer-btns > * {
+  flex: 1 0 auto;
 }
