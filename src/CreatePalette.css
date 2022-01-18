@@ -17,7 +17,7 @@
 }
 
 .CreatePalette-drawer-header {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 500;
   margin: 1rem 0 .4rem 0;
   line-height: normal;
@@ -92,28 +92,28 @@
 
 .CreatePalette-Btn--add {
   color: #fff;
-  background: rgb(45,47,50);
+  background: #000;
   width: 100%;
   position: relative;
   /* to accommodate --add-chip */
-  padding-left: calc(82px);
-  padding-top: .6rem;
-  padding-bottom: .6rem;
+  padding-left: calc(83% + 8px);
+  padding-top: 6px;
+  padding-bottom: 3px;
   overflow: hidden;
 }
 
 .CreatePalette-Btn--add:hover {
-  background: rgb(88,88,90);
+  background: rgb(45,47,50);
 }
 
 .CreatePalette-Btn--add-chip {
   display: block;
-  width: 80px;
+  width: 83%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  border-right: solid 2px #fff;
+  box-shadow: inset 0px 0px 2px 2px rgba(30,30,30,.15);
   transition: background .3s;
 }
 
@@ -121,10 +121,40 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 4px;
-  padding-top: .5rem;
+  gap: 3px;
+  padding-top: .8rem;
 }
 
 .CreatePalette-drawer-btns > * {
   flex: 1 0 auto;
+}
+
+.CreatePalette-main {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.CreatePalette-chips {
+  /* breakpoint */
+  --w: 450px;
+  /* num of columns when over breakpoint */
+  --n: 5;
+  /* num of columns when under breakpoint */
+  --m: 1;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(
+      clamp(
+        100% / (var(--n) + 1) + 0.1%,
+        (var(--w) - 100vw) * 1000,
+        100% / (var(--m) + 1) + 0.1%
+      ),
+      1fr
+    )
+  );
+  grid-auto-rows: 20%;
 }

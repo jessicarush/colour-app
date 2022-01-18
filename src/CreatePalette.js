@@ -1,5 +1,7 @@
+/* eslint-disable no-lone-blocks */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { v4 as uuid } from 'uuid';
 import { SketchPicker, ChromePicker } from 'react-color';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -10,8 +12,15 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
+import DraggableChip from './DraggableChip';
 import './CreatePalette.css';
+
+
+const starterColors = ["#b9b9b9", "#cbcbcb", "#dbdbdb", "#ebebeb"];
+
+{/* Material UI drawer stuff ------------------------------------------------ */}
 
 // The color picker component is the main factor for drawer width
 const drawerWidth = 260;
@@ -19,7 +28,7 @@ const drawerWidth = 260;
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: 0,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -61,11 +70,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+{/* Component---------------------------------------------------------------- */}
 
 function CreatePalette(props) {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("#3ccaa2");
-  const [colors, setColors] = useState(["#b9b9b9", "#cbcbcb", "#dbdbdb", "#ebebeb"])
+  const [colors, setColors] = useState(starterColors);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -137,13 +147,32 @@ function CreatePalette(props) {
           <p className="CreatePalette-drawer-subheader">
             Add colors to build your new palette.
           </p>
-          <SketchPicker
+          <ChromePicker
             color={currentColor}
             className="CreatePalette-picker"
             onChangeComplete={ handlePickerChange }
             disableAlpha={true}
-            width="210px"
+            width="230px"
           />
+          <TextField
+              id="color-name"
+              label="Color name"
+              variant="outlined"
+              size="small"
+              sx={{margin: '1rem 0 .75rem 0'}}
+              fullWidth
+            />
+            <button
+              className="CreatePalette-Btn CreatePalette-Btn--add"
+              onClick={addNewColor}
+              title="Add color"
+            >
+              <span
+                className="CreatePalette-Btn--add-chip"
+                style={{background: currentColor}}
+              ></span>
+              <AddIcon />
+            </button>
           <div className="CreatePalette-drawer-btns">
             <button className="CreatePalette-Btn CreatePalette-Btn--plain">
               Random color
@@ -151,34 +180,17 @@ function CreatePalette(props) {
             <button className="CreatePalette-Btn CreatePalette-Btn--plain">
               Clear palette
             </button>
-            <TextField
-              id="color-name"
-              label="Color name"
-              variant="outlined"
-              size="small"
-              sx={{marginTop: '2rem'}}
-              fullWidth
-            />
-            <button
-              className="CreatePalette-Btn CreatePalette-Btn--add"
-              onClick={addNewColor}
-            >
-              <span
-                className="CreatePalette-Btn--add-chip"
-                style={{background: currentColor}}
-              ></span>
-              Add color
-            </button>
           </div>
-
         </div>
       </Drawer>
-      {/* Palette ----------------------------------------------------------- */}
-      <Main className="CreatePalette-palette" open={open}>
+      {/* Main content (palette) -------------------------------------------- */}
+      <Main className="CreatePalette-main" open={open}>
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
+        <div className="CreatePalette-chips">
           {colors.map(color => (
-            <p>{color}</p>
+            <DraggableChip key={uuid()} color={color} />
           ))}
+        </div>
       </Main>
     </Box>
   );
