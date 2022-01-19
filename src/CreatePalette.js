@@ -1,8 +1,9 @@
 /* eslint-disable no-lone-blocks */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { SketchPicker, ChromePicker } from 'react-color';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -18,9 +19,14 @@ import DraggableChip from './DraggableChip';
 import './CreatePalette.css';
 
 
-const starterColors = ["#b9b9b9", "#cbcbcb", "#dbdbdb", "#ebebeb"];
+const starterColors = [
+  { name: 'light gray', value: '#b9b9b9' },
+  { name: 'silver', value: '#cbcbcb' },
+  { name: 'fog', value: '#dbdbdb' },
+  { name: 'mist', value: '#ebebeb' }
+];
 
-{/* Material UI drawer stuff ------------------------------------------------ */}
+{/* Material UI drawer stuff ------------------------------------------------ */ }
 
 // The color picker component is the main factor for drawer width
 const drawerWidth = 260;
@@ -70,11 +76,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-{/* Component---------------------------------------------------------------- */}
+{/* Component---------------------------------------------------------------- */ }
 
 function CreatePalette(props) {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState("#3ccaa2");
+  const [newColorName, setNewColorName] = useState("");
   const [colors, setColors] = useState(starterColors);
 
   const handleDrawerOpen = () => {
@@ -90,8 +97,33 @@ function CreatePalette(props) {
   };
 
   const addNewColor = () => {
-    setColors([...colors, currentColor])
+    // Check that new color value doesn't already exist. This validation
+    // should happen on submit, whereas the ValidatorForm validation happens
+    // on change (of the input field) which doesn't work for checking the
+    // current color value.
+    let isColorUnique = colors.every(
+      c => c.value.toLowerCase() !== currentColor.toLowerCase()
+    );
+    console.log(isColorUnique);
+    if (isColorUnique) {
+      let newColor = { name: newColorName, value: currentColor };
+      setColors([...colors, newColor]);
+      setNewColorName('');
+    } else {
+      console.log('fuck yew');
+    }
   }
+
+  const updateNewColorName = (e) => {
+    setNewColorName(e.target.value);
+  }
+
+  useEffect(() => {
+    // Add custom validation rules
+    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+      return colors.every(c => c.name.toLowerCase() !== value.toLowerCase());
+    });
+  }, [colors]);
 
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
@@ -150,29 +182,63 @@ function CreatePalette(props) {
           <ChromePicker
             color={currentColor}
             className="CreatePalette-picker"
-            onChangeComplete={ handlePickerChange }
+            onChangeComplete={handlePickerChange}
             disableAlpha={true}
             width="230px"
           />
-          <TextField
-              id="color-name"
+          {/* <TextField
+            id="color-name"
+            label="Color name"
+            variant="outlined"
+            size="small"
+            sx={{ margin: '1rem 0 .75rem 0' }}
+            fullWidth
+          />
+          <button
+            className="CreatePalette-Btn CreatePalette-Btn--add"
+            onClick={addNewColor}
+            title="Add color"
+          >
+            <span
+              className="CreatePalette-Btn--add-chip"
+              style={{ background: currentColor }}
+            ></span>
+            <AddIcon />
+          </button> */}
+
+          <ValidatorForm
+            onSubmit={addNewColor}
+            onError={errors => console.log(errors)}
+          >
+            <TextValidator
               label="Color name"
+              onChange={updateNewColorName}
+              name="color-name"
               variant="outlined"
+              value={newColorName}
               size="small"
-              sx={{margin: '1rem 0 .75rem 0'}}
+              sx={{ margin: '1rem 0 .75rem 0' }}
               fullWidth
+              validators={['required', 'isColorNameUnique']}
+              errorMessages={[
+                'This field is required.',
+                'Color names must be unique.'
+              ]}
             />
+            {/* <Button type="submit">Submit</Button> */}
             <button
+              type="submit"
               className="CreatePalette-Btn CreatePalette-Btn--add"
-              onClick={addNewColor}
               title="Add color"
             >
               <span
                 className="CreatePalette-Btn--add-chip"
-                style={{background: currentColor}}
+                style={{ background: currentColor }}
               ></span>
               <AddIcon />
             </button>
+          </ValidatorForm>
+
           <div className="CreatePalette-drawer-btns">
             <button className="CreatePalette-Btn CreatePalette-Btn--plain">
               Random color
@@ -188,7 +254,7 @@ function CreatePalette(props) {
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
         <div className="CreatePalette-chips">
           {colors.map(color => (
-            <DraggableChip key={uuid()} color={color} />
+            <DraggableChip key={uuid()} color={color.value} name={color.name} />
           ))}
         </div>
       </Main>
