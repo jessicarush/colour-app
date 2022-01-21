@@ -4,7 +4,7 @@ import './PaletteChip.css';
 
 
 function PaletteChip(props) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const colors = props.palette.colors.map(c => (
     <div
       key={uuid()}

@@ -1,0 +1,30 @@
+.DraggableChip {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.trash-icon-btn {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.trash-icon-btn svg {
+  font-size: .9rem;
+  margin-bottom: -3px;
+  margin-right: 4px;
+}

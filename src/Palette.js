@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import ColorChip from './ColorChip';
 import Navbar from './Navbar';
-import seedPalettes from './seedPalettes';
 import generatePalette from './helpers';
 import './Palette.css';
 import NotFound from './NotFound';
 
 
 function Palette(props) {
+  const seedPalettes = props.seedPalettes;
   // URL params
   const params = useParams();
   const seedPalette = findPalette(params.id);

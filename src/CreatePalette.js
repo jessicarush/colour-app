@@ -1,6 +1,6 @@
 /* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import { SketchPicker, ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
+import { toKebabCase } from './helpers';
 import DraggableChip from './DraggableChip';
 import './CreatePalette.css';
 
@@ -79,10 +80,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 {/* Component---------------------------------------------------------------- */ }
 
 function CreatePalette(props) {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState("#3ccaa2");
-  const [newColorName, setNewColorName] = useState("");
+  const [currentColor, setCurrentColor] = useState('#3ccaa2');
+  const [newColorName, setNewColorName] = useState('');
   const [colors, setColors] = useState(starterColors);
+  const [msg, setMsg] = useState('');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,32 +99,51 @@ function CreatePalette(props) {
     setCurrentColor(color.hex);
   };
 
-  const addNewColor = () => {
+  const updateNewColorName = (e) => {
+    setNewColorName(e.target.value);
+  }
+
+  function addNewColor() {
     // Check that new color value doesn't already exist. This validation
     // should happen on submit, whereas the ValidatorForm validation happens
     // on change (of the input field) which doesn't work for checking the
     // current color value.
-    let isColorUnique = colors.every(
-      c => c.value.toLowerCase() !== currentColor.toLowerCase()
-    );
-    console.log(isColorUnique);
-    if (isColorUnique) {
-      let newColor = { name: newColorName, value: currentColor };
+    // let colorIsUnique = colors.every(
+    //   c => c.value.toLowerCase() !== currentColor.toLowerCase()
+    // );
+    let existingColor = colors.filter(c => c.value === currentColor)[0];
+    if (!existingColor) {
+      let newColor = { name: newColorName.trim(), value: currentColor };
       setColors([...colors, newColor]);
       setNewColorName('');
+      setMsg('');
     } else {
-      console.log('fuck yew');
+      setMsg(
+        `You already have the color ${currentColor} in your palette. ` +
+        `It's called ${existingColor.name}.`
+      );
     }
   }
 
-  const updateNewColorName = (e) => {
-    setNewColorName(e.target.value);
+  function handleSavePalette() {
+    let newPaletteName = 'a test palette '.trim();
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: toKebabCase(newPaletteName),
+      colors: colors
+    }
+    props.savePalette(newPalette);
+    // Redirect to home
+    navigate('/');
   }
 
   useEffect(() => {
     // Add custom validation rules
     ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-      return colors.every(c => c.name.toLowerCase() !== value.toLowerCase());
+      return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
+    });
+    ValidatorForm.addValidationRule('isColorUnique', (value) => {
+      return colors.every(c => c.value.toLowerCase() !== currentColor.toLowerCase());
     });
   }, [colors]);
 
@@ -146,7 +168,10 @@ function CreatePalette(props) {
           </IconButton>
           <h1 className="CreatePalette-toolbar-header">Create a palette</h1>
           <Stack spacing={.5} direction="row">
-            <button className="CreatePalette-Btn CreatePalette-Btn--save">
+            <button
+              className="CreatePalette-Btn CreatePalette-Btn--save"
+              onClick={handleSavePalette}
+            >
               Save
             </button>
             <Link to={"/"} className="CreatePalette-Btn CreatePalette-Btn--exit">
@@ -219,10 +244,18 @@ function CreatePalette(props) {
               size="small"
               sx={{ margin: '1rem 0 .75rem 0' }}
               fullWidth
-              validators={['required', 'isColorNameUnique']}
+              validators={[
+                'required',
+                'isColorNameUnique',
+                'maxStringLength:32',
+                'matchRegexp:^[0-9A-Za-z #-]+$'
+                ]}
               errorMessages={[
-                'This field is required.',
-                'Color names must be unique.'
+                'Give this color a name.',
+                'Color names must be unique.',
+                'Too long! Max 32 characters.',
+                'No special characters please.'
+                // 'You already have that color.'
               ]}
             />
             {/* <Button type="submit">Submit</Button> */}
@@ -238,6 +271,13 @@ function CreatePalette(props) {
               <AddIcon />
             </button>
           </ValidatorForm>
+
+          { msg && (
+            <p className='CreatePalette-msg'>
+              <span>Duplicate! </span>
+              {msg}
+            </p>
+          )}
 
           <div className="CreatePalette-drawer-btns">
             <button className="CreatePalette-Btn CreatePalette-Btn--plain">

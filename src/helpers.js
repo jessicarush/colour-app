@@ -3,9 +3,17 @@ import chroma from 'chroma-js';
 
 const levels = [100, 200, 300, 400, 500, 600, 700, 800, 900];
 
+function analyzeContrast(foregroundColor, backgroundColor) {
+  // Computes the WCAG contrast ratio between two colors.
+  // A minimum contrast of 4.5 is recommended to ensure that text is still
+  // readable against a background color.
+  const contrast = chroma.contrast(foregroundColor, backgroundColor);
+  return contrast >= 2.5;
+}
+
 function toKebabCase(string) {
   // Returns a kebab case string
-  return string.toLowerCase().replace(/ /g, '-');
+  return string.trim().toLowerCase().replace(/ /g, '-');
 }
 
 function getColorRange(hexColor) {
@@ -49,5 +57,5 @@ function generatePalette(seedPalette) {
   return newPalette;
 }
 
-
+export { analyzeContrast, toKebabCase };
 export default generatePalette;

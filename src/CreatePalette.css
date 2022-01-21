@@ -129,6 +129,22 @@
   flex: 1 0 auto;
 }
 
+.CreatePalette-msg {
+  background: rgb(255,252,244);
+  border: solid 2px rgb(251,235,185);
+  border-radius: 4px;
+  font-size: .75rem;
+  color: rgb(140,109,31);
+  line-height: 1.1rem;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.CreatePalette-msg span {
+  color: rgb(92,72,19);
+  font-weight: 600;
+}
+
 .CreatePalette-main {
   min-height: 100vh;
   box-sizing: border-box;

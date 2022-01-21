@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import ColorChip from './ColorChip';
 import Navbar from './Navbar';
-import seedPalettes from './seedPalettes';
 import generatePalette from './helpers';
 import './ColorShades.css';
 import NotFound from './NotFound';
@@ -11,6 +10,7 @@ import NotFound from './NotFound';
 // Opportunity for improvement: color format should be stored in localStorage
 
 function ColorShades(props) {
+  const seedPalettes = props.seedPalettes;
   // URL params
   const params = useParams();
   const format = ['hex', 'rgb', 'rgba'].includes(params.format) ? params.format : 'hex';

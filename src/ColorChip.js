@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
+import { analyzeContrast } from './helpers';
 import './ColorChip.css';
 
 
@@ -17,14 +18,6 @@ function ColorChip(props) {
   function updateCopied() {
     setCopied(true);
     setTimeout(() => setCopied(false), 1200);
-  }
-
-  function analyzeContrast(foregroundColor, backgroundColor) {
-    // Computes the WCAG contrast ratio between two colors.
-    // A minimum contrast of 4.5 is recommended to ensure that text is still
-    // readable against a background color.
-    const contrast = chroma.contrast(foregroundColor, backgroundColor);
-    return contrast >= 2.5;
   }
 
   const goodContrast = analyzeContrast("fff", color);

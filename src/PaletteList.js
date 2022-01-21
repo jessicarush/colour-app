@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
-import seedPalettes from './seedPalettes';
 import PaletteChip from './PaletteChip';
 import './PaletteList.css';
 
 
 function PaletteList(props) {
 
-  const palettes = seedPalettes.map(p => (
+  const palettes = props.seedPalettes.map(p => (
     <PaletteChip key={uuid()} palette={p} />
   ));
 

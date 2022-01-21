@@ -16,6 +16,16 @@ A practice project built with React.
 - [react-jss](https://cssinjs.org/)
 - [rc-slider](https://github.com/react-component/slider)
 
+# Notes
+
+- PaletteList - add some hover effect to palatte cards. Un-link palette name.
+- PaletteList - footer
+- ColorChip - improve copy effect animation
+- ColorChip - remove bg from ...more and make color name part of more button
+- reduce font size of title on mobile?
+- create palette on mobile
+
+
 
 ## Getting Started with Create React App
 
