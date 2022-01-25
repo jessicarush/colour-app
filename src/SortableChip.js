@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import chroma from 'chroma-js';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 import { analyzeContrast } from './helpers';
-import './DraggableChip.css';
+import './SortableChip.css';
 
 
-function DraggableChip(props) {
-  // props
+function SortableChip(props) {
   const { color, name, deleteColor } = props;
 
   const goodContrast = analyzeContrast("fff", color);
@@ -15,9 +15,9 @@ function DraggableChip(props) {
   function handleDeleteColor() {
     deleteColor(color);
   }
-
   return (
-    <div className="DraggableChip" style={{ background: color }}>
+
+    <div className="SortableChip" style={{ background: color }}>
       <div className="info-container">
         <h2 className="info-name" style={{ color: fontColor }} title={color}>
           {name}
@@ -34,4 +34,4 @@ function DraggableChip(props) {
   )
 }
 
-export default DraggableChip;
+export default SortableChip;

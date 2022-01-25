@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dnd-kit/core": "^5.0.1",
-    "@dnd-kit/sortable": "^6.0.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
@@ -21,6 +19,7 @@
     "react-material-ui-form-validator": "^3.0.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-sortable-hoc": "^2.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },

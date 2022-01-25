@@ -1,10 +1,10 @@
-.DraggableChip {
+.SortableChip {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-.DraggableChip .info-container {
+.SortableChip .info-container {
   align-items: flex-end;
 }
 

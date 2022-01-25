@@ -12,6 +12,8 @@ import {
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
+  rectSortingStrategy,
+  rectSwappingStrategy
 } from '@dnd-kit/sortable';
 import { SortableItem } from './SortableItem';
 
@@ -35,7 +37,7 @@ function SortableTest(props) {
       >
         <SortableContext
           items={items}
-          strategy={verticalListSortingStrategy}
+          strategy={rectSwappingStrategy}
         >
           {items.map(id => <SortableItem key={id} id={id} />)}
         </SortableContext>

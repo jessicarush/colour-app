@@ -16,7 +16,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
 import { toKebabCase } from './helpers';
-import DraggableChip from './DraggableChip';
+
+import SortableChip from './SortableChip';
 import './CreatePalette.css';
 
 
@@ -117,9 +118,6 @@ function CreatePalette(props) {
     // should happen on submit, whereas the ValidatorForm validation happens
     // on change (of the input field) which doesn't work for checking the
     // current color value.
-    // let colorIsUnique = colors.every(
-    //   c => c.value.toLowerCase() !== currentColor.toLowerCase()
-    // );
     let existingColor = colors.filter(c => c.value === currentColor)[0];
     if (!existingColor) {
       let newColor = { name: newColorName.trim(), value: currentColor };
@@ -140,7 +138,6 @@ function CreatePalette(props) {
   }
 
   function handleSavePalette() {
-    // let newPaletteName = 'a test palette '.trim();
     const newPalette = {
       paletteName: newPaletteName.trim(),
       id: toKebabCase(newPaletteName),
@@ -150,18 +147,13 @@ function CreatePalette(props) {
     navigate('/');
   }
 
+  {/* Custom validators for TextValidator ----------------------------------- */ }
   useEffect(() => {
-    // Add custom validation rules (to be updated when colors changes)
     ValidatorForm.addValidationRule('colorNameUnique', (value) => {
       return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
     });
-    ValidatorForm.addValidationRule('colorUnique', (value) => {
-      return colors.every(c => c.value.toLowerCase() !== currentColor.toLowerCase());
-    });
   }, [colors]);
-
   useEffect(() => {
-    // Add custom validation rules (does not need to update)
     ValidatorForm.addValidationRule('paletteNameUnique', (value) => {
       return seedPalettes.every(p => p.paletteName.toLowerCase() !== value.trim().toLowerCase());
     });
@@ -169,8 +161,8 @@ function CreatePalette(props) {
 
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
-      {/* <CssBaseline /> */} {/* <-- fuck this */}
       {/* Header bar -------------------------------------------------------- */}
+      {/* <CssBaseline /> */} {/* <-- fuck this */}
       <AppBar position="fixed" open={open} sx={{
         background: "#fff",
         color: "#000",
@@ -260,26 +252,6 @@ function CreatePalette(props) {
             disableAlpha={true}
             width="230px"
           />
-          {/* <TextField
-            id="color-name"
-            label="Color name"
-            variant="outlined"
-            size="small"
-            sx={{ margin: '1rem 0 .75rem 0' }}
-            fullWidth
-          />
-          <button
-            className="CreatePalette-Btn CreatePalette-Btn--add"
-            onClick={addNewColor}
-            title="Add color"
-          >
-            <span
-              className="CreatePalette-Btn--add-chip"
-              style={{ background: currentColor }}
-            ></span>
-            <AddIcon />
-          </button> */}
-
           <ValidatorForm
             onSubmit={addNewColor}
             onError={errors => console.log(errors)}
@@ -304,10 +276,8 @@ function CreatePalette(props) {
                 'Color names must be unique.',
                 'Too long! Max 32 characters.',
                 'No special characters please.'
-                // 'You already have that color.'
               ]}
             />
-            {/* <Button type="submit">Submit</Button> */}
             <button
               type="submit"
               className="CreatePalette-Btn CreatePalette-Btn--add"
@@ -343,7 +313,7 @@ function CreatePalette(props) {
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
         <div className="CreatePalette-chips">
           {colors.map(color => (
-            <DraggableChip
+            <SortableChip
               key={uuid()}
               color={color.value}
               name={color.name}
