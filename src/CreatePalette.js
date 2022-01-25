@@ -80,12 +80,17 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 {/* Component---------------------------------------------------------------- */ }
 
 function CreatePalette(props) {
-  const navigate = useNavigate();
+  // props
+  const { savePalette, seedPalettes } = props;
+  // state
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('#3ccaa2');
   const [newColorName, setNewColorName] = useState('');
   const [colors, setColors] = useState(starterColors);
+  const [newPaletteName, setNewPaletteName] = useState('');
   const [msg, setMsg] = useState('');
+
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,6 +106,10 @@ function CreatePalette(props) {
 
   const updateNewColorName = (e) => {
     setNewColorName(e.target.value);
+  }
+
+  const updateNewPaletteName = (e) => {
+    setNewPaletteName(e.target.value);
   }
 
   function addNewColor() {
@@ -125,27 +134,38 @@ function CreatePalette(props) {
     }
   }
 
+  function deleteColor(color) {
+    let updatedColors = colors.filter(c => c.value !== color);
+    setColors(updatedColors);
+  }
+
   function handleSavePalette() {
-    let newPaletteName = 'a test palette '.trim();
+    // let newPaletteName = 'a test palette '.trim();
     const newPalette = {
-      paletteName: newPaletteName,
+      paletteName: newPaletteName.trim(),
       id: toKebabCase(newPaletteName),
       colors: colors
     }
-    props.savePalette(newPalette);
-    // Redirect to home
+    savePalette(newPalette);
     navigate('/');
   }
 
   useEffect(() => {
-    // Add custom validation rules
-    ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+    // Add custom validation rules (to be updated when colors changes)
+    ValidatorForm.addValidationRule('colorNameUnique', (value) => {
       return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
     });
-    ValidatorForm.addValidationRule('isColorUnique', (value) => {
+    ValidatorForm.addValidationRule('colorUnique', (value) => {
       return colors.every(c => c.value.toLowerCase() !== currentColor.toLowerCase());
     });
   }, [colors]);
+
+  useEffect(() => {
+    // Add custom validation rules (does not need to update)
+    ValidatorForm.addValidationRule('paletteNameUnique', (value) => {
+      return seedPalettes.every(p => p.paletteName.toLowerCase() !== value.trim().toLowerCase());
+    });
+  });
 
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
@@ -168,12 +188,41 @@ function CreatePalette(props) {
           </IconButton>
           <h1 className="CreatePalette-toolbar-header">Create a palette</h1>
           <Stack spacing={.5} direction="row">
-            <button
-              className="CreatePalette-Btn CreatePalette-Btn--save"
-              onClick={handleSavePalette}
+            {/* Palette name input */}
+            <ValidatorForm
+              onSubmit={handleSavePalette}
+              onError={errors => console.log(errors)}
             >
-              Save
-            </button>
+              <TextValidator
+                label="Palette name"
+                onChange={updateNewPaletteName}
+                name="newPaletteName"
+                variant="outlined"
+                value={newPaletteName}
+                size="small"
+                sx={{ margin: '1rem 0 .75rem 0' }}
+                fullWidth
+                validators={[
+                  'required',
+                  'paletteNameUnique',
+                  'maxStringLength:32',
+                  'matchRegexp:^[0-9A-Za-z #-]+$'
+                ]}
+                errorMessages={[
+                  'Give this palette a name.',
+                  'This palette name is already taken.',
+                  'Too long! Max 32 characters.',
+                  'No special characters please.'
+                ]}
+              />
+              <button
+                className="CreatePalette-Btn CreatePalette-Btn--save"
+                type="submit"
+              >
+                Save
+              </button>
+            </ValidatorForm>
+
             <Link to={"/"} className="CreatePalette-Btn CreatePalette-Btn--exit">
               Close
             </Link>
@@ -238,7 +287,7 @@ function CreatePalette(props) {
             <TextValidator
               label="Color name"
               onChange={updateNewColorName}
-              name="color-name"
+              name="newColorName"
               variant="outlined"
               value={newColorName}
               size="small"
@@ -246,10 +295,10 @@ function CreatePalette(props) {
               fullWidth
               validators={[
                 'required',
-                'isColorNameUnique',
+                'colorNameUnique',
                 'maxStringLength:32',
                 'matchRegexp:^[0-9A-Za-z #-]+$'
-                ]}
+              ]}
               errorMessages={[
                 'Give this color a name.',
                 'Color names must be unique.',
@@ -272,7 +321,7 @@ function CreatePalette(props) {
             </button>
           </ValidatorForm>
 
-          { msg && (
+          {msg && (
             <p className='CreatePalette-msg'>
               <span>Duplicate! </span>
               {msg}
@@ -294,7 +343,12 @@ function CreatePalette(props) {
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
         <div className="CreatePalette-chips">
           {colors.map(color => (
-            <DraggableChip key={uuid()} color={color.value} name={color.name} />
+            <DraggableChip
+              key={uuid()}
+              color={color.value}
+              name={color.name}
+              deleteColor={deleteColor}
+            />
           ))}
         </div>
       </Main>

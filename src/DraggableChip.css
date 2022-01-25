@@ -4,6 +4,10 @@
   justify-content: flex-end;
 }
 
+.DraggableChip .info-container {
+  align-items: flex-end;
+}
+
 .trash-icon-btn {
   border: none;
   margin: 0;
@@ -21,10 +25,16 @@
   outline: none;
   text-align: inherit;
   cursor: pointer;
+  border-radius: 2px 0 0 0;
+  transition: background .3s;
 }
 
 .trash-icon-btn svg {
-  font-size: .9rem;
-  margin-bottom: -3px;
-  margin-right: 4px;
+  font-size: .8rem;
+  margin: 3px 4px 0px 4px;
+  transition: font-size .3s;
+}
+
+.trash-icon-btn:hover svg {
+  font-size: 1.1rem;
 }

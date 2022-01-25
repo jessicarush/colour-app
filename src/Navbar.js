@@ -13,13 +13,15 @@ import './Navbar.css';
 
 
 function Navbar(props) {
-  // State
+  // props
+  const { level, updateLevel, updateColorFormat, NavbarClassName } = props;
+  // state
   const [colorFormat, setColorFormat] = useState(props.colorFormat || 'hex');
   const [msgOpen, setMsgOpen] = React.useState(false);
 
   function handleColorFormatChange(e) {
     setColorFormat(e.target.value);
-    props.updateColorFormat(e.target.value);
+    updateColorFormat(e.target.value);
     handleMsgOpen();
   }
 
@@ -49,7 +51,7 @@ function Navbar(props) {
   )
 
   return (
-    <header className={`Navbar ${props.className}`}>
+    <header className={`Navbar ${NavbarClassName}`}>
       <div className="Navbar-head">
         <h1 className="Navbar-header">
           <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
@@ -57,18 +59,18 @@ function Navbar(props) {
       </div>
 
       {/* The slider is only rendered when level prop exists (Palette.js) */}
-      {props.level && (
+      {level && (
         <React.Fragment>
           <div className="Navbar-slider-label">
-            <span>Level: {props.level} </span>
+            <span>Level: {level} </span>
           </div>
           <div className="Navbar-slider">
             <Slider
-              defaultValue={props.level}
+              defaultValue={level}
               min={100}
               max={900}
               step={100}
-              onAfterChange={props.updateLevel}
+              onAfterChange={updateLevel}
             />
           </div>
         </React.Fragment>

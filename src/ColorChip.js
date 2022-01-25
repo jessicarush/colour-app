@@ -7,13 +7,14 @@ import './ColorChip.css';
 
 
 function ColorChip(props) {
-  // State values
-  const [copied, setCopied] = useState(false);
-
+  // props
   const paletteId = props.paletteId;
+  const colorFormat = props.colorFormat;
   const colorId = props.color.id;
-  const color = props.color[props.colorFormat];
   const name = props.color.name;
+  const color = props.color[colorFormat];
+  // state
+  const [copied, setCopied] = useState(false);
 
   function updateCopied() {
     setCopied(true);
@@ -57,7 +58,7 @@ function ColorChip(props) {
           {/* The more button is only rendered in Palette.js */}
           {paletteId && (
             <Link
-              to={`/palette/${paletteId}/${colorId}/${props.colorFormat}`}
+              to={`/palette/${paletteId}/${colorId}/${colorFormat}`}
               className="info-more"
               style={{ color: fontColor, background: btnBgColor }}
               onClick={e => { e.stopPropagation() }}

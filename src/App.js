@@ -6,6 +6,7 @@ import Palette from './Palette';
 import ColorShades from './ColorShades';
 import CreatePalette from './CreatePalette';
 import NotFound from './NotFound';
+import SortableTest from './SortableTest';
 import './App.css';
 
 
@@ -26,7 +27,10 @@ function App() {
           <Route path=":format" element={<ColorShades seedPalettes={palettes} />} />
           <Route path="" element={<ColorShades seedPalettes={palettes} />} />
         </Route>
-        <Route path="/create" element={<CreatePalette savePalette={savePalette} />} />
+        <Route path="/create" element={
+          <CreatePalette savePalette={savePalette} seedPalettes={palettes} />
+        } />
+        <Route path="/testing" element={<SortableTest />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

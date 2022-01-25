@@ -9,7 +9,7 @@ import NotFound from './NotFound';
 
 
 function Palette(props) {
-  const seedPalettes = props.seedPalettes;
+  const { seedPalettes } = props;
   // URL params
   const params = useParams();
   const seedPalette = findPalette(params.id);

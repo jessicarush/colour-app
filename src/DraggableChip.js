@@ -6,18 +6,27 @@ import './DraggableChip.css';
 
 
 function DraggableChip(props) {
+  // props
+  const { color, name, deleteColor } = props;
 
-  const goodContrast = analyzeContrast("fff", props.color);
-  const fontColor = goodContrast ? '#fff' : chroma(props.color).darken(3);
-  const btnBgColor = goodContrast ? 'rgba(0,0,0,.15)' : 'rgba(255,255,255,.35)';
+  const goodContrast = analyzeContrast("fff", color);
+  const fontColor = goodContrast ? '#fff' : chroma(color).darken(3);
+
+  function handleDeleteColor() {
+    deleteColor(color);
+  }
 
   return (
-    <div className="DraggableChip" style={{ background: props.color }}>
+    <div className="DraggableChip" style={{ background: color }}>
       <div className="info-container">
-        <h2 className="info-name" style={{ color: fontColor }} title={props.color}>
-          {props.name}
+        <h2 className="info-name" style={{ color: fontColor }} title={color}>
+          {name}
         </h2>
-        <button className="trash-icon-btn" title="Delete color">
+        <button
+          className="trash-icon-btn"
+          title="Delete color"
+          onClick={handleDeleteColor}
+        >
           <DeleteIcon style={{ color: fontColor }} />
         </button>
       </div>

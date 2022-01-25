@@ -10,13 +10,14 @@ import NotFound from './NotFound';
 // Opportunity for improvement: color format should be stored in localStorage
 
 function ColorShades(props) {
-  const seedPalettes = props.seedPalettes;
+  // props
+  const { seedPalettes } = props;
   // URL params
   const params = useParams();
   const format = ['hex', 'rgb', 'rgba'].includes(params.format) ? params.format : 'hex';
   const paletteId = params.paletteId;
   const colorId = params.colorId;
-  // State
+  // state
   const [colorFormat, setColorFormat] = useState(format);
 
   let renderElements;

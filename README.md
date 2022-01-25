@@ -13,12 +13,14 @@ A practice project built with React.
 - [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard)
 - [react-form-validator-core](https://github.com/NewOldMax/react-form-validator-core)
 - [react-transition-group](https://github.com/reactjs/react-transition-group)
-- [react-jss](https://cssinjs.org/)
 - [rc-slider](https://github.com/react-component/slider)
+- [React Color](https://casesandberg.github.io/react-color/)
+- [React Router](https://reactrouter.com/docs/en/v6)
+- [react-material-ui-form-validator](https://github.com/NewOldMax/react-material-ui-form-validator)
 
 # Notes
 
-- PaletteList - add some hover effect to palatte cards. Un-link palette name.
+- PaletteList - add some hover effect to palette cards. Un-link palette name.
 - PaletteList - footer
 - ColorChip - improve copy effect animation
 - ColorChip - remove bg from ...more and make color name part of more button

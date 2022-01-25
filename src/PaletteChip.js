@@ -4,8 +4,9 @@ import './PaletteChip.css';
 
 
 function PaletteChip(props) {
+  const { palette } = props;
   const navigate = useNavigate();
-  const colors = props.palette.colors.map(c => (
+  const colors = palette.colors.map(c => (
     <div
       key={uuid()}
       className="PaletteChip-color"
@@ -15,13 +16,15 @@ function PaletteChip(props) {
   ));
 
   function gotoPalette() {
-    navigate(`/palette/${props.palette.id}`);
+    navigate(`/palette/${palette.id}`);
   }
 
   return (
     <div className="PaletteChip" onClick={gotoPalette}>
-      {colors}
-      <h2 className="PaletteChip-name">{props.palette.paletteName}</h2>
+      <div className="PaletteChip-colors">
+        {colors}
+      </div>
+      <h2 className="PaletteChip-name">{palette.paletteName}</h2>
     </div>
   );
 }
