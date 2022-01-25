@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SketchPicker, ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { styled } from '@mui/material/styles';
@@ -15,6 +15,7 @@ import { arrayMove } from 'react-sortable-hoc';
 import chroma from 'chroma-js';
 
 import { toKebabCase } from './helpers';
+import CreatePaletteNav from './CreatePaletteNav';
 import SortableList from './SortableList';
 import './CreatePalette.css';
 
@@ -82,22 +83,22 @@ function CreatePalette(props) {
   // props
   const { savePalette, seedPalettes, maxColors=20 } = props;
   // state
-  const [open, setOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('#3ccaa2');
   const [newColorName, setNewColorName] = useState('');
   const [colors, setColors] = useState(starterColors);
-  const [newPaletteName, setNewPaletteName] = useState('');
+
   const [msg, setMsg] = useState('');
 
   const navigate = useNavigate();
   const paletteIsFull = colors.length >= maxColors;
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setDrawerOpen(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setDrawerOpen(false);
   };
 
   const handlePickerChange = (color) => {
@@ -108,10 +109,6 @@ function CreatePalette(props) {
     setNewColorName(e.target.value);
   }
 
-  const updateNewPaletteName = (e) => {
-    setNewPaletteName(e.target.value);
-  }
-
   const clearPalette = () => {
     setColors([]);
   };
@@ -120,6 +117,10 @@ function CreatePalette(props) {
     let randomColor = chroma.random().hex();
     setCurrentColor(randomColor);
   }
+
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    setColors(colors => arrayMove(colors, oldIndex, newIndex));
+  };
 
   function addNewColor() {
     // Check that new color value doesn't already exist. This validation
@@ -145,7 +146,7 @@ function CreatePalette(props) {
     setColors(updatedColors);
   }
 
-  function handleSavePalette() {
+  function handleSavePalette(newPaletteName) {
     const newPalette = {
       paletteName: newPaletteName.trim(),
       id: toKebabCase(newPaletteName),
@@ -161,21 +162,13 @@ function CreatePalette(props) {
       return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
     });
   }, [colors]);
-  useEffect(() => {
-    ValidatorForm.addValidationRule('paletteNameUnique', (value) => {
-      return seedPalettes.every(p => p.paletteName.toLowerCase() !== value.trim().toLowerCase());
-    });
-  });
 
-  const onSortEnd = ({oldIndex, newIndex}) => {
-    setColors(colors => arrayMove(colors, oldIndex, newIndex));
-  };
 
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
-      {/* Header bar -------------------------------------------------------- */}
-      {/* <CssBaseline /> */} {/* <-- fuck this */}
-      <AppBar position="fixed" open={open} sx={{
+      {/* MUI Appbar --------------------------------------------------------- */}
+
+      <AppBar position="fixed" open={drawerOpen} sx={{
         background: "#fff",
         color: "#000",
         boxShadow: "none",
@@ -186,55 +179,19 @@ function CreatePalette(props) {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(drawerOpen && { display: 'none' }) }}
           >
             <TuneIcon sx={{ fontSize: '1.4rem' }} />
           </IconButton>
 
-          <h1 className="CreatePalette-toolbar-header">Create a palette</h1>
-
-            {/* Palette name input */}
-            <ValidatorForm
-              onSubmit={handleSavePalette}
-              onError={errors => console.log(errors)}
-            >
-              <TextValidator
-                label="Palette name"
-                onChange={updateNewPaletteName}
-                name="newPaletteName"
-                variant="outlined"
-                value={newPaletteName}
-                size="small"
-                sx={{ margin: '1rem 0 .75rem 0' }}
-                fullWidth
-                validators={[
-                  'required',
-                  'paletteNameUnique',
-                  'maxStringLength:32',
-                  'matchRegexp:^[0-9A-Za-z #-]+$'
-                ]}
-                errorMessages={[
-                  'Give this palette a name.',
-                  'This palette name is already taken.',
-                  'Too long! Max 32 characters.',
-                  'No special characters please.'
-                ]}
-              />
-              <button
-                className="CreatePalette-Btn CreatePalette-Btn--save"
-                type="submit"
-              >
-                Save
-              </button>
-            </ValidatorForm>
-
-            <Link to={"/"} className="CreatePalette-Btn CreatePalette-Btn--exit">
-              Close
-            </Link>
+          <CreatePaletteNav
+            handleSavePalette={handleSavePalette}
+            seedPalettes={seedPalettes}
+          />
 
         </Toolbar>
       </AppBar>
-      {/* Drawer ------------------------------------------------------------ */}
+      {/* MUI Drawer -------------------------------------------------------- */}
       <Drawer
         sx={{
           width: drawerWidth,
@@ -246,13 +203,14 @@ function CreatePalette(props) {
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={drawerOpen}
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>
+
         <div className="CreatePalette-drawer">
           <h2 className="CreatePalette-drawer-header">Add colours</h2>
           <p className="CreatePalette-drawer-subheader">
@@ -293,7 +251,7 @@ function CreatePalette(props) {
             />
             <button
               type="submit"
-              className="CreatePalette-Btn CreatePalette-Btn--add"
+              className="Btn CreatePalette-Btn--add"
               title="Add colour"
               disabled={paletteIsFull}
             >
@@ -321,22 +279,24 @@ function CreatePalette(props) {
 
           <div className="CreatePalette-drawer-btns">
             <button
-              className="CreatePalette-Btn CreatePalette-Btn--plain"
+              className="Btn CreatePalette-Btn--plain"
               onClick={setRandomColor}
             >
               Random colour
             </button>
             <button
-              className="CreatePalette-Btn CreatePalette-Btn--plain"
+              className="Btn CreatePalette-Btn--plain"
               onClick={clearPalette}
             >
               Clear palette
             </button>
           </div>
         </div>
+
+
       </Drawer>
-      {/* Main content (palette) -------------------------------------------- */}
-      <Main className="CreatePalette-main" open={open}>
+      {/* MUI Main content -------------------------------------------------- */}
+      <Main className="CreatePalette-main" open={drawerOpen}>
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
 
         <SortableList
