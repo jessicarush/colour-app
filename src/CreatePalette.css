@@ -27,7 +27,7 @@
   color: rgb(80,80,80);
   font-size: .7rem;
   font-weight: 400;
-  margin: 0 0 2rem 0;
+  margin: 0 0 2.5rem 0;
   line-height: normal;
 }
 
@@ -102,8 +102,8 @@
   overflow: hidden;
 }
 
-.CreatePalette-Btn--add:hover {
-  background: rgb(45,47,50);
+.CreatePalette-Btn--add svg {
+  transition: transform .5s;
 }
 
 .CreatePalette-Btn--add-chip {
@@ -114,7 +114,40 @@
   top: 0;
   left: 0;
   box-shadow: inset 0px 0px 2px 2px rgba(30,30,30,.15);
-  transition: background .3s;
+  transition: background .3s, width .5s;
+}
+
+.CreatePalette-Btn--add-msg {
+  font-weight: 400;
+  font-size: 1rem;
+  position: absolute;
+  top: .5rem;
+  left: 15px;
+  width: 83%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s;
+  text-align: left;
+}
+
+.CreatePalette-Btn--add:hover {
+  background: rgb(45,47,50);
+}
+
+.CreatePalette-Btn--add:disabled {
+  background: rgb(99,100,102);
+}
+
+.CreatePalette-Btn--add:disabled svg {
+  transform: rotate(45deg);
+}
+
+.CreatePalette-Btn--add:disabled .CreatePalette-Btn--add-chip {
+  width: 3%;
+}
+
+.CreatePalette-Btn--add:disabled .CreatePalette-Btn--add-msg {
+  opacity: 1;
 }
 
 .CreatePalette-drawer-btns {
@@ -172,5 +205,5 @@
       1fr
     )
   );
-  grid-auto-rows: 20%;
+  grid-auto-rows: 25%;
 }

@@ -27,6 +27,7 @@
   cursor: pointer;
   border-radius: 2px 0 0 0;
   transition: background .3s;
+  z-index: 100;
 }
 
 .trash-icon-btn svg {

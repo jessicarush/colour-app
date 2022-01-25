@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import ColorChip from './ColorChip';
 import Navbar from './Navbar';
 import generatePalette from './helpers';

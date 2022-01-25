@@ -1,7 +1,6 @@
 /* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 import { SketchPicker, ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { styled } from '@mui/material/styles';
@@ -11,13 +10,14 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
-import { toKebabCase } from './helpers';
+import { arrayMove } from 'react-sortable-hoc';
+import chroma from 'chroma-js';
 
-import SortableChip from './SortableChip';
+import { toKebabCase } from './helpers';
+import SortableList from './SortableList';
 import './CreatePalette.css';
 
 
@@ -82,7 +82,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function CreatePalette(props) {
   // props
-  const { savePalette, seedPalettes } = props;
+  const { savePalette, seedPalettes, maxColors=20 } = props;
   // state
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('#3ccaa2');
@@ -92,6 +92,7 @@ function CreatePalette(props) {
   const [msg, setMsg] = useState('');
 
   const navigate = useNavigate();
+  const paletteIsFull = colors.length >= maxColors;
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -111,6 +112,15 @@ function CreatePalette(props) {
 
   const updateNewPaletteName = (e) => {
     setNewPaletteName(e.target.value);
+  }
+
+  const clearPalette = () => {
+    setColors([]);
+  };
+
+  const setRandomColor = () => {
+    let randomColor = chroma.random().hex();
+    setCurrentColor(randomColor);
   }
 
   function addNewColor() {
@@ -158,6 +168,10 @@ function CreatePalette(props) {
       return seedPalettes.every(p => p.paletteName.toLowerCase() !== value.trim().toLowerCase());
     });
   });
+
+  const onSortEnd = ({oldIndex, newIndex}) => {
+    setColors(colors => arrayMove(colors, oldIndex, newIndex));
+  };
 
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
@@ -282,6 +296,7 @@ function CreatePalette(props) {
               type="submit"
               className="CreatePalette-Btn CreatePalette-Btn--add"
               title="Add color"
+              disabled={paletteIsFull}
             >
               <span
                 className="CreatePalette-Btn--add-chip"
@@ -291,6 +306,13 @@ function CreatePalette(props) {
             </button>
           </ValidatorForm>
 
+          {paletteIsFull && (
+            <p className='CreatePalette-msg'>
+              <span>Your palette is full. </span>
+              Palettes may have up to {maxColors} colors. You can delete some of your colors if you want to add different ones.
+            </p>
+          )}
+
           {msg && (
             <p className='CreatePalette-msg'>
               <span>Duplicate! </span>
@@ -299,10 +321,16 @@ function CreatePalette(props) {
           )}
 
           <div className="CreatePalette-drawer-btns">
-            <button className="CreatePalette-Btn CreatePalette-Btn--plain">
+            <button
+              className="CreatePalette-Btn CreatePalette-Btn--plain"
+              onClick={setRandomColor}
+            >
               Random color
             </button>
-            <button className="CreatePalette-Btn CreatePalette-Btn--plain">
+            <button
+              className="CreatePalette-Btn CreatePalette-Btn--plain"
+              onClick={clearPalette}
+            >
               Clear palette
             </button>
           </div>
@@ -311,16 +339,15 @@ function CreatePalette(props) {
       {/* Main content (palette) -------------------------------------------- */}
       <Main className="CreatePalette-main" open={open}>
         <DrawerHeader /> {/* used as a spacer for the Drawer Header above */}
-        <div className="CreatePalette-chips">
-          {colors.map(color => (
-            <SortableChip
-              key={uuid()}
-              color={color.value}
-              name={color.name}
-              deleteColor={deleteColor}
-            />
-          ))}
-        </div>
+
+        <SortableList
+          colors={ colors }
+          deleteColor={deleteColor}
+          axis="xy"
+          onSortEnd={onSortEnd}
+          distance={2}
+        />
+
       </Main>
     </Box>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
+
 import { analyzeContrast } from './helpers';
 import './ColorChip.css';
 
