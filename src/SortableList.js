@@ -2,7 +2,7 @@ import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import SortableChip from './SortableChip';
-
+import './SortableList.css';
 
 // function SortableList(props) {
 //   const {colors, deleteColor } = props;
@@ -24,7 +24,7 @@ import SortableChip from './SortableChip';
 const SortableList = SortableContainer((props) => {
   const {colors, deleteColor } = props;
   return (
-    <div className="CreatePalette-chips">
+    <div className="SortableList">
       {colors.map((color, i) => (
         <SortableChip
           index={i}

@@ -4,11 +4,26 @@
   justify-content: flex-end;
 }
 
-.SortableChip .info-container {
+.SortableChip-info-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
-.trash-icon-btn {
+.SortableChip-info-name {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: clamp(7.5px, 1vw, 8.5px);
+  padding: 0 .4rem .3rem .4rem;
+  line-height: normal;
+  margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.SortableChip-trash-btn {
   border: none;
   margin: 0;
   padding: 0;
@@ -30,12 +45,12 @@
   z-index: 100;
 }
 
-.trash-icon-btn svg {
+.SortableChip-trash-btn svg {
   font-size: .8rem;
   margin: 3px 4px 0px 4px;
   transition: font-size .3s;
 }
 
-.trash-icon-btn:hover svg {
+.SortableChip-trash-btn:hover svg {
   font-size: 1.1rem;
 }

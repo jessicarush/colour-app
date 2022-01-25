@@ -1,4 +1,3 @@
-/* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SketchPicker, ChromePicker } from 'react-color';
@@ -9,7 +8,6 @@ import Drawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
@@ -28,7 +26,7 @@ const starterColors = [
   { name: 'mist', value: '#ebebeb' }
 ];
 
-{/* Material UI drawer stuff ------------------------------------------------ */ }
+/* Material UI drawer stuff ------------------------------------------------ */
 
 // The color picker component is the main factor for drawer width
 const drawerWidth = 260;
@@ -78,7 +76,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-{/* Component---------------------------------------------------------------- */ }
+/* Component---------------------------------------------------------------- */
 
 function CreatePalette(props) {
   // props
@@ -136,7 +134,7 @@ function CreatePalette(props) {
       setMsg('');
     } else {
       setMsg(
-        `You already have the color ${currentColor} in your palette. ` +
+        `You already have the colour ${currentColor} in your palette. ` +
         `It's called ${existingColor.name}.`
       );
     }
@@ -157,7 +155,7 @@ function CreatePalette(props) {
     navigate('/');
   }
 
-  {/* Custom validators for TextValidator ----------------------------------- */ }
+  /* Custom validators for TextValidator ----------------------------------- */
   useEffect(() => {
     ValidatorForm.addValidationRule('colorNameUnique', (value) => {
       return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
@@ -192,8 +190,9 @@ function CreatePalette(props) {
           >
             <TuneIcon sx={{ fontSize: '1.4rem' }} />
           </IconButton>
+
           <h1 className="CreatePalette-toolbar-header">Create a palette</h1>
-          <Stack spacing={.5} direction="row">
+
             {/* Palette name input */}
             <ValidatorForm
               onSubmit={handleSavePalette}
@@ -232,7 +231,7 @@ function CreatePalette(props) {
             <Link to={"/"} className="CreatePalette-Btn CreatePalette-Btn--exit">
               Close
             </Link>
-          </Stack>
+
         </Toolbar>
       </AppBar>
       {/* Drawer ------------------------------------------------------------ */}
@@ -255,9 +254,9 @@ function CreatePalette(props) {
           </IconButton>
         </DrawerHeader>
         <div className="CreatePalette-drawer">
-          <h2 className="CreatePalette-drawer-header">New color palette</h2>
+          <h2 className="CreatePalette-drawer-header">Add colours</h2>
           <p className="CreatePalette-drawer-subheader">
-            Add colors to build your new palette.
+            to build your new palette.
           </p>
           <ChromePicker
             color={currentColor}
@@ -295,7 +294,7 @@ function CreatePalette(props) {
             <button
               type="submit"
               className="CreatePalette-Btn CreatePalette-Btn--add"
-              title="Add color"
+              title="Add colour"
               disabled={paletteIsFull}
             >
               <span
@@ -309,7 +308,7 @@ function CreatePalette(props) {
           {paletteIsFull && (
             <p className='CreatePalette-msg'>
               <span>Your palette is full. </span>
-              Palettes may have up to {maxColors} colors. You can delete some of your colors if you want to add different ones.
+              Palettes may have up to {maxColors} colours. You can delete some of your colours if you want to add different ones.
             </p>
           )}
 
@@ -325,7 +324,7 @@ function CreatePalette(props) {
               className="CreatePalette-Btn CreatePalette-Btn--plain"
               onClick={setRandomColor}
             >
-              Random color
+              Random colour
             </button>
             <button
               className="CreatePalette-Btn CreatePalette-Btn--plain"

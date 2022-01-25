@@ -54,7 +54,7 @@ function Navbar(props) {
     <header className={`Navbar ${NavbarClassName}`}>
       <div className="Navbar-head">
         <h1 className="Navbar-header">
-          <Link to={"/"}>&lt;Color Palettes /&gt;</Link>
+          <Link to={"/"}>&lt;Colour Palettes /&gt;</Link>
         </h1>
       </div>
 

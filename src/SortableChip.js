@@ -46,12 +46,12 @@ const SortableChip = SortableElement((props) => {
   }
   return (
     <div className="SortableChip" style={{ background: color }}>
-      <div className="info-container">
-        <h2 className="info-name" style={{ color: fontColor }} title={color}>
+      <div className="SortableChip-info-container">
+        <h2 className="SortableChip-info-name" style={{ color: fontColor }} title={color}>
           {name}
         </h2>
         <button
-          className="trash-icon-btn"
+          className="SortableChip-trash-btn"
           title="Delete color"
           onClick={handleDeleteColor}
         >

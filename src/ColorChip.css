@@ -8,7 +8,7 @@
   opacity: 1;
 }
 
-.copy-overlay {
+.ColorChip-copy-overlay {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -23,17 +23,17 @@
   transition: transform .2s ease-in-out;
 }
 
-.ColorShades .copy-overlay {
+.ColorShades .ColorChip-copy-overlay {
   transform-origin: bottom center;
 }
 
-.copy-overlay.show {
+.ColorChip-copy-overlay.show {
   opacity: 1;
   transform: scale(1.1);
   z-index: 5;
 }
 
-.copy-msg {
+.ColorChip-copy-msg {
   box-sizing: border-box;
   width: 100%;
   /* color: #fff; */
@@ -47,40 +47,40 @@
   transition-delay: 0.15s;
 }
 
-.copy-msg.show {
+.ColorChip-copy-msg.show {
   opacity: 1;
 }
 
-.copy-msg p {
+.ColorChip-copy-msg p {
   margin: 0;
 }
 
 /* To match breakpoint in .Palette-colors */
 @media (max-width: 450px) {
-  .copy-overlay {
+  .ColorChip-copy-overlay {
     justify-content: flex-start;
   }
 
-  .copy-overlay.show {
+  .ColorChip-copy-overlay.show {
     transform: scale(1.3);
     transform-origin: bottom center;
     z-index: 0;
   }
 
-  .copy-msg {
+  .ColorChip-copy-msg {
     font-size: .6rem;
   }
 
 }
 
-.copy-container {
+.ColorChip-copy-container {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.copy-btn {
+.ColorChip-copy-btn {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -97,18 +97,14 @@
   transition: opacity .3s;
 }
 
-.info-container {
+.ColorChip-info-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.ColorChip .info-container {
   align-items: baseline;
 }
 
-.info-name {
-  /* color: #fff; */
+.ColorChip-info-name {
   text-transform: uppercase;
   font-weight: 600;
   font-size: clamp(7.5px, 1vw, 8.5px);
@@ -120,7 +116,7 @@
   overflow: hidden;
 }
 
-.info-more {
+.ColorChip-info-more {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

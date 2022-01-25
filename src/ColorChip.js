@@ -31,28 +31,28 @@ function ColorChip(props) {
       <div className="ColorChip" style={{ background: color }}>
 
         <div
-          className={`copy-overlay ${copied ? "show" : ""}`}
+          className={`ColorChip-copy-overlay ${copied ? "show" : ""}`}
           style={{ background: color }}
         >
           <div
-            className={`copy-msg ${copied ? "show" : ""}`}
+            className={`ColorChip-copy-msg ${copied ? "show" : ""}`}
             style={{ color: fontColor }}
           >
             <p>Copied {color.toLowerCase()}</p>
           </div>
         </div>
 
-        <div className="copy-container">
+        <div className="ColorChip-copy-container">
           <button
-            className="copy-btn"
+            className="ColorChip-copy-btn"
             style={{ color: fontColor, background: btnBgColor }}
           >
             Copy
           </button>
         </div>
 
-        <div className="info-container">
-          <h2 className="info-name" style={{ color: fontColor }}>
+        <div className="ColorChip-info-container">
+          <h2 className="ColorChip-info-name" style={{ color: fontColor }}>
             {name}
           </h2>
 
@@ -60,7 +60,7 @@ function ColorChip(props) {
           {paletteId && (
             <Link
               to={`/palette/${paletteId}/${colorId}/${colorFormat}`}
-              className="info-more"
+              className="ColorChip-info-more"
               style={{ color: fontColor, background: btnBgColor }}
               onClick={e => { e.stopPropagation() }}
             >
