@@ -17,14 +17,14 @@ function ColorChip(props) {
   // state
   const [copied, setCopied] = useState(false);
 
-  function updateCopied() {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1200);
-  }
-
   const goodContrast = analyzeContrast("fff", color);
   const fontColor = goodContrast ? '#fff' : chroma(color).darken(3);
   const btnBgColor = goodContrast ? 'rgba(0,0,0,.15)' : 'rgba(255,255,255,.35)';
+
+  const updateCopied = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1200);
+  };
 
   return (
     <CopyToClipboard text={color} onCopy={updateCopied}>

@@ -4,16 +4,17 @@ import { v4 as uuid } from 'uuid';
 
 import ColorChip from './ColorChip';
 import Navbar from './Navbar';
-import generatePalette from './helpers';
-import './ColorShades.css';
 import NotFound from './NotFound';
+import generatePalette, { toKebabCase } from './helpers';
+import './ColorShades.css';
+
 
 // Opportunity for improvement: color format should be stored in localStorage
 
 function ColorShades(props) {
   // props
   const { seedPalettes } = props;
-  // URL params
+  // url params
   const params = useParams();
   const format = ['hex', 'rgb', 'rgba'].includes(params.format) ? params.format : 'hex';
   const paletteId = params.paletteId;
@@ -21,38 +22,48 @@ function ColorShades(props) {
   // state
   const [colorFormat, setColorFormat] = useState(format);
 
-  let renderElements;
-  let paletteName;
-  const colorShades = findColorShades(colorId, paletteId);
+  const [colorName, paletteName, colorShades] = getColorShades(colorId, paletteId);
 
-  function updateColorFormat(colorFormat) {
+  const updateColorFormat = (colorFormat) => {
     setColorFormat(colorFormat);
-  }
+  };
 
   function findPalette(id) {
     return seedPalettes.find(palette => palette.id === id);
   }
 
-  function findColorShades(colorId, paletteId) {
-    let shades;
-    // Get Palette
-    const seedPalette = findPalette(paletteId);
-    if (seedPalette) {
-      shades = [];
-      paletteName = seedPalette.paletteName;
-      const fullPalette = generatePalette(seedPalette);
-      // Get color shades
-      for (let level in fullPalette.colors) {
-        shades = shades.concat(
-          fullPalette.colors[level].filter(c => c.id === colorId)
-        );
-      }
-    }
-    return shades;
+  function findColor(colorId, seedPalette) {
+    return seedPalette.colors.find(c => toKebabCase(c.name) === colorId);
   }
 
+  function getColorShades(colorId, paletteId) {
+    let colorName, paletteName, shades;
+    // Get Palette (check if palette exists)
+    const seedPalette = findPalette(paletteId);
+
+    if (seedPalette) {
+      // Get color shades (check if color exists)
+      const seedColor = findColor(colorId, seedPalette);
+
+      if (seedColor) {
+        colorName = seedColor.name;
+        paletteName = seedPalette.paletteName;
+        shades = [];
+        const fullPalette = generatePalette(seedPalette);
+
+        for (let level in fullPalette.colors) {
+          shades = shades.concat(
+            fullPalette.colors[level].filter(c => c.id === colorId)
+          );
+        }
+      }
+    }
+    return [colorName, paletteName, shades];
+  }
+
+  let renderElements;
+
   if (colorShades) {
-    const colorName = colorShades[0].name.replace(/ [0-9]+$/, '');
     const colorChips = colorShades.map(color => (
       <ColorChip key={uuid()} color={color} colorFormat={colorFormat} />
     ));

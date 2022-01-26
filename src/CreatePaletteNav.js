@@ -15,9 +15,9 @@ function CreatePaletteNav(props) {
     setNewPaletteName(e.target.value);
   }
 
-  function handleSubmit() {
+  const handleSubmit = () => {
     handleSavePalette(newPaletteName);
-  }
+  };
 
   /* Custom validators for TextValidator ----------------------------------- */
   useEffect(() => {

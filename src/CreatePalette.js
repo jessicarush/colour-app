@@ -74,7 +74,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
-/* Component---------------------------------------------------------------- */
+/* Main Component ------------------------------------------------------------ */
 
 function CreatePalette(props) {
   // props
@@ -97,14 +97,14 @@ function CreatePalette(props) {
     setColors(colors => arrayMove(colors, oldIndex, newIndex));
   };
 
-  function addNewColor(newColor) {
+  const addNewColor = (newColor) => {
     setColors([...colors, newColor]);
-  }
+  };
 
-  function deleteColor(color) {
+  const deleteColor = (color) => {
     let updatedColors = colors.filter(c => c.value !== color);
     setColors(updatedColors);
-  }
+  };
 
   const clearPalette = () => {
     setColors([]);

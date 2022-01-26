@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import PaletteChip from './PaletteChip';
 import './PaletteList.css';
 

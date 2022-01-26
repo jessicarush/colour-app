@@ -1,11 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import './PaletteChip.css';
 
 
 function PaletteChip(props) {
   const { palette } = props;
   const navigate = useNavigate();
+
+  const gotoPalette = () => {
+    navigate(`/palette/${palette.id}`);
+  };
+
   const colors = palette.colors.map(c => (
     <div
       key={uuid()}
@@ -14,10 +20,6 @@ function PaletteChip(props) {
     >
     </div>
   ));
-
-  function gotoPalette() {
-    navigate(`/palette/${palette.id}`);
-  }
 
   return (
     <div className="PaletteChip" onClick={gotoPalette}>

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+
 import seedPalettes from './seedPalettes';
 import PaletteList from './PaletteList';
 import Palette from './Palette';
@@ -12,9 +13,9 @@ import './App.css';
 function App() {
   const [palettes, setPalettes] = useState(seedPalettes);
 
-  function savePalette(newPalette) {
+  const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
-  }
+  };
 
   return (
     <div className="App">

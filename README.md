@@ -28,6 +28,7 @@ A practice project built with React.
 - create palette on mobile
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
+- design /Notfound
 
 
 

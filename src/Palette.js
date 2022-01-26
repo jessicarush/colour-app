@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+
 import ColorChip from './ColorChip';
 import Navbar from './Navbar';
+import NotFound from './NotFound';
 import generatePalette from './helpers';
 import './Palette.css';
-import NotFound from './NotFound';
 
 
 function Palette(props) {
@@ -17,19 +18,19 @@ function Palette(props) {
   const [level, setLevel] = useState(500);
   const [colorFormat, setColorFormat] = useState('hex');
 
-  let renderElements;
-
-  function updateLevel(newLevel) {
+  const updateLevel = (newLevel) => {
     setLevel(newLevel);
-  }
+  };
 
-  function updateColorFormat(colorFormat) {
+  const updateColorFormat = (colorFormat) => {
     setColorFormat(colorFormat);
-  }
+  };
 
   function findPalette(id) {
     return seedPalettes.find(palette => palette.id === id);
   }
+
+  let renderElements;
 
   if (seedPalette) {
     // Get Palette
