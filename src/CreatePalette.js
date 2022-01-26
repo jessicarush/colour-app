@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SketchPicker, ChromePicker } from 'react-color';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -9,13 +7,12 @@ import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import AddIcon from '@mui/icons-material/Add';
 import TuneIcon from '@mui/icons-material/Tune';
 import { arrayMove } from 'react-sortable-hoc';
-import chroma from 'chroma-js';
 
 import { toKebabCase } from './helpers';
 import CreatePaletteNav from './CreatePaletteNav';
+import CreatePaletteTools from './CreatePaletteTools';
 import SortableList from './SortableList';
 import './CreatePalette.css';
 
@@ -84,14 +81,9 @@ function CreatePalette(props) {
   const { savePalette, seedPalettes, maxColors=20 } = props;
   // state
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [currentColor, setCurrentColor] = useState('#3ccaa2');
-  const [newColorName, setNewColorName] = useState('');
   const [colors, setColors] = useState(starterColors);
 
-  const [msg, setMsg] = useState('');
-
   const navigate = useNavigate();
-  const paletteIsFull = colors.length >= maxColors;
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -101,50 +93,22 @@ function CreatePalette(props) {
     setDrawerOpen(false);
   };
 
-  const handlePickerChange = (color) => {
-    setCurrentColor(color.hex);
-  };
-
-  const updateNewColorName = (e) => {
-    setNewColorName(e.target.value);
-  }
-
-  const clearPalette = () => {
-    setColors([]);
-  };
-
-  const setRandomColor = () => {
-    let randomColor = chroma.random().hex();
-    setCurrentColor(randomColor);
-  }
-
   const onSortEnd = ({oldIndex, newIndex}) => {
     setColors(colors => arrayMove(colors, oldIndex, newIndex));
   };
 
-  function addNewColor() {
-    // Check that new color value doesn't already exist. This validation
-    // should happen on submit, whereas the ValidatorForm validation happens
-    // on change (of the input field) which doesn't work for checking the
-    // current color value.
-    let existingColor = colors.filter(c => c.value === currentColor)[0];
-    if (!existingColor) {
-      let newColor = { name: newColorName.trim(), value: currentColor };
-      setColors([...colors, newColor]);
-      setNewColorName('');
-      setMsg('');
-    } else {
-      setMsg(
-        `You already have the colour ${currentColor} in your palette. ` +
-        `It's called ${existingColor.name}.`
-      );
-    }
+  function addNewColor(newColor) {
+    setColors([...colors, newColor]);
   }
 
   function deleteColor(color) {
     let updatedColors = colors.filter(c => c.value !== color);
     setColors(updatedColors);
   }
+
+  const clearPalette = () => {
+    setColors([]);
+  };
 
   function handleSavePalette(newPaletteName) {
     const newPalette = {
@@ -156,17 +120,9 @@ function CreatePalette(props) {
     navigate('/');
   }
 
-  /* Custom validators for TextValidator ----------------------------------- */
-  useEffect(() => {
-    ValidatorForm.addValidationRule('colorNameUnique', (value) => {
-      return colors.every(c => c.name.toLowerCase() !== value.trim().toLowerCase());
-    });
-  }, [colors]);
-
-
   return (
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
-      {/* MUI Appbar --------------------------------------------------------- */}
+      {/* MUI App bar -------------------------------------------------------- */}
 
       <AppBar position="fixed" open={drawerOpen} sx={{
         background: "#fff",
@@ -211,88 +167,12 @@ function CreatePalette(props) {
           </IconButton>
         </DrawerHeader>
 
-        <div className="CreatePalette-drawer">
-          <h2 className="CreatePalette-drawer-header">Add colours</h2>
-          <p className="CreatePalette-drawer-subheader">
-            to build your new palette.
-          </p>
-          <ChromePicker
-            color={currentColor}
-            className="CreatePalette-picker"
-            onChangeComplete={handlePickerChange}
-            disableAlpha={true}
-            width="230px"
-          />
-          <ValidatorForm
-            onSubmit={addNewColor}
-            onError={errors => console.log(errors)}
-          >
-            <TextValidator
-              label="Color name"
-              onChange={updateNewColorName}
-              name="newColorName"
-              variant="outlined"
-              value={newColorName}
-              size="small"
-              sx={{ margin: '1rem 0 .75rem 0' }}
-              fullWidth
-              validators={[
-                'required',
-                'colorNameUnique',
-                'maxStringLength:32',
-                'matchRegexp:^[0-9A-Za-z #-]+$'
-              ]}
-              errorMessages={[
-                'Give this color a name.',
-                'Color names must be unique.',
-                'Too long! Max 32 characters.',
-                'No special characters please.'
-              ]}
-            />
-            <button
-              type="submit"
-              className="Btn CreatePalette-Btn--add"
-              title="Add colour"
-              disabled={paletteIsFull}
-            >
-              <span
-                className="CreatePalette-Btn--add-chip"
-                style={{ background: currentColor }}
-              ></span>
-              <AddIcon />
-            </button>
-          </ValidatorForm>
-
-          {paletteIsFull && (
-            <p className='CreatePalette-msg'>
-              <span>Your palette is full. </span>
-              Palettes may have up to {maxColors} colours. You can delete some of your colours if you want to add different ones.
-            </p>
-          )}
-
-          {msg && (
-            <p className='CreatePalette-msg'>
-              <span>Duplicate! </span>
-              {msg}
-            </p>
-          )}
-
-          <div className="CreatePalette-drawer-btns">
-            <button
-              className="Btn CreatePalette-Btn--plain"
-              onClick={setRandomColor}
-            >
-              Random colour
-            </button>
-            <button
-              className="Btn CreatePalette-Btn--plain"
-              onClick={clearPalette}
-            >
-              Clear palette
-            </button>
-          </div>
-        </div>
-
+        <CreatePaletteTools
+          addNewColor={addNewColor}
+          clearPalette={clearPalette}
+          maxColors={maxColors}
+          colors={colors}
+        />
 
       </Drawer>
       {/* MUI Main content -------------------------------------------------- */}

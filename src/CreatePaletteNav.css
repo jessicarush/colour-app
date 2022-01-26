@@ -7,15 +7,3 @@
   padding-right: 1rem;
 }
 
-.CreatePaletteNav-Btn--save {
-  color: #fff;
-  background: rgb(12,182,8);
-}
-
-.CreatePaletteNav-Btn--save:hover {
-  background: rgb(10,143,8);
-}
-
-.CreatePaletteNav-Btn--exit:hover {
-  background: rgb(230,230,230);
-}

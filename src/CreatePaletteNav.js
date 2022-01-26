@@ -58,14 +58,14 @@ function CreatePaletteNav(props) {
           ]}
         />
         <button
-          className="Btn CreatePaletteNav-Btn--save"
+          className="Btn Btn--save"
           type="submit"
         >
           Save
         </button>
       </ValidatorForm>
 
-      <Link to={"/"} className="Btn CreatePaletteNav-Btn--exit">
+      <Link to={"/"} className="Btn Btn--exit">
         Close
       </Link>
 

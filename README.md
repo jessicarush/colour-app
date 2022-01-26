@@ -26,6 +26,8 @@ A practice project built with React.
 - ColorChip - remove bg from ...more and make color name part of more button
 - reduce font size of title on mobile?
 - create palette on mobile
+- replace react-sortable-hoc with dnd-kit
+- replace rc-slider with something not deprecated
 
 
 

@@ -25,3 +25,25 @@
   transition: background .3s;
   text-align: center;
 }
+
+.Btn--plain {
+  background: rgb(230,230,230);
+  font-size: .75rem;
+}
+
+.Btn--plain:hover {
+  background: rgb(210,210,210);
+}
+
+.Btn--save {
+  color: #fff;
+  background: rgb(12,182,8);
+}
+
+.Btn--save:hover {
+  background: rgb(10,143,8);
+}
+
+.Btn--exit:hover {
+  background: rgb(230,230,230);
+}
