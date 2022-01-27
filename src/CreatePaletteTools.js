@@ -16,7 +16,7 @@ function CreatePaletteTools(props) {
     colors
   } = props;
   // state
-  const [currentColor, setCurrentColor] = useState('#3ccaa2');
+  const [currentColor, setCurrentColor] = useState('#ff5252');
   const [newColorName, setNewColorName] = useState('');
   const [duplicateColor, setDuplicateColor] = useState('');
 
@@ -115,7 +115,8 @@ function CreatePaletteTools(props) {
       {paletteIsFull && (
         <p className='CreatePaletteTools-msg'>
           <span>Your palette is full. </span>
-          Palettes may have up to {maxColors} colours. You can delete some of your colours if you want to add different ones.
+          Palettes may have up to {maxColors} colours.
+          You can delete some of your colours if you want to add different ones.
         </p>
       )}
 

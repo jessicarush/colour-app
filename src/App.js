@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 import seedPalettes from './seedPalettes';
 import PaletteList from './PaletteList';
@@ -18,21 +19,23 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<PaletteList seedPalettes={palettes} />} />
-        <Route path="/palette/:id" element={<Palette seedPalettes={palettes} />} />
-        <Route path="/palette/:paletteId/:colorId">
-          {/* Optional URL param for color format */}
-          <Route path=":format" element={<ColorShades seedPalettes={palettes} />} />
-          <Route path="" element={<ColorShades seedPalettes={palettes} />} />
-        </Route>
-        <Route path="/create" element={
-          <CreatePalette savePalette={savePalette} seedPalettes={palettes} />
-        } />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<PaletteList seedPalettes={palettes} />} />
+          <Route path="/palette/:id" element={<Palette seedPalettes={palettes} />} />
+          <Route path="/palette/:paletteId/:colorId">
+            {/* Optional URL param for color format */}
+            <Route path=":format" element={<ColorShades seedPalettes={palettes} />} />
+            <Route path="" element={<ColorShades seedPalettes={palettes} />} />
+          </Route>
+          <Route path="/create" element={
+            <CreatePalette savePalette={savePalette} seedPalettes={palettes} />
+          } />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </StyledEngineProvider>
   );
 }
 
