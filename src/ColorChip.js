@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
 
 import { analyzeContrast } from './helpers';
-import './ColorChip.css';
+import './css/ColorChip.css';
 
 
 function ColorChip(props) {

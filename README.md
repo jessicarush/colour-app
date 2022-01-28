@@ -29,6 +29,7 @@ A practice project built with React.
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
 - design /Notfound
+- like counter using localStorage? (like/dislike without login)
 
 
 

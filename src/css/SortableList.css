@@ -1,6 +1,6 @@
 .SortableList {
   /* breakpoint */
-  --w: 450px;
+  --w: 680px;
   /* num of columns when over breakpoint */
   --n: 5;
   /* num of columns when under breakpoint */

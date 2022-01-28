@@ -6,7 +6,7 @@ import ColorChip from './ColorChip';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
 import generatePalette, { toKebabCase } from './helpers';
-import './ColorShades.css';
+import './css/ColorShades.css';
 
 
 // Opportunity for improvement: color format should be stored in localStorage

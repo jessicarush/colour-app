@@ -6,7 +6,7 @@ import ColorChip from './ColorChip';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
 import generatePalette from './helpers';
-import './Palette.css';
+import './css/Palette.css';
 
 
 function Palette(props) {

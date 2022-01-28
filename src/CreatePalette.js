@@ -14,7 +14,7 @@ import { toKebabCase } from './helpers';
 import CreatePaletteNav from './CreatePaletteNav';
 import CreatePaletteTools from './CreatePaletteTools';
 import SortableList from './SortableList';
-import './CreatePalette.css';
+import './css/CreatePalette.css';
 
 
 const starterColors = [
@@ -80,7 +80,7 @@ function CreatePalette(props) {
   // props
   const { savePalette, seedPalettes, maxColors=20 } = props;
   // state
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(true);
   const [colors, setColors] = useState(starterColors);
 
   const navigate = useNavigate();
@@ -125,7 +125,7 @@ function CreatePalette(props) {
       {/* MUI App bar -------------------------------------------------------- */}
 
       <AppBar position="fixed" open={drawerOpen} sx={{
-        background: "#fff",
+        background: "whitesmoke",
         color: "#000",
         boxShadow: "none",
       }}>

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
-import './PaletteChip.css';
+import './css/PaletteChip.css';
 
 
 function PaletteChip(props) {

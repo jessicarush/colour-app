@@ -2,7 +2,7 @@ import React from 'react';
 import { SortableContainer } from 'react-sortable-hoc';
 
 import SortableChip from './SortableChip';
-import './SortableList.css';
+import './css/SortableList.css';
 
 // function SortableList(props) {
 //   const {colors, deleteColor } = props;

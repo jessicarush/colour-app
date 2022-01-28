@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { SortableElement } from "react-sortable-hoc";
 
 import { analyzeContrast } from './helpers';
-import './SortableChip.css';
+import './css/SortableChip.css';
 
 
 // function SortableChip(props) {

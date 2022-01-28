@@ -8,7 +8,7 @@ import Palette from './Palette';
 import ColorShades from './ColorShades';
 import CreatePalette from './CreatePalette';
 import NotFound from './NotFound';
-import './App.css';
+import './css/App.css';
 
 
 function App() {

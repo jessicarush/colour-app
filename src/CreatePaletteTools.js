@@ -4,7 +4,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import AddIcon from '@mui/icons-material/Add';
 import chroma from 'chroma-js';
 
-import './CreatePaletteTools.css';
+import './css/CreatePaletteTools.css';
 
 
 function CreatePaletteTools(props) {

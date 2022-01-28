@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+// Order matters here for index CSS to load first
+import './css/index.css';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
