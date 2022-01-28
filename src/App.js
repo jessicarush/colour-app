@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 
@@ -12,11 +12,18 @@ import './css/App.css';
 
 
 function App() {
-  const [palettes, setPalettes] = useState(seedPalettes);
+  // First check if there is any data in localStorage
+  const storedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+  const [palettes, setPalettes] = useState(storedPalettes || seedPalettes);
 
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
   };
+
+  // Save palettes to localStorage whenever palettes is changed
+  useEffect(() => {
+    window.localStorage.setItem('palettes', JSON.stringify(palettes));
+ }, [palettes]);
 
   return (
     <StyledEngineProvider injectFirst>
