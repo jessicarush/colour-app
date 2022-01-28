@@ -24,7 +24,6 @@ function CreatePaletteNav(props) {
 
   const handleSubmit = () => {
     handleSavePalette(newPaletteName);
-    setOpen(false);
   };
 
   const handleClickOpen = () => {
@@ -44,6 +43,7 @@ function CreatePaletteNav(props) {
 
   return (
     <React.Fragment>
+
       <h1 className="CreatePaletteNav-header">Create a palette</h1>
       <Stack spacing={.5} direction="row">
         <Link to={"/"} className="Btn Btn--exit">
@@ -55,20 +55,20 @@ function CreatePaletteNav(props) {
       </Stack>
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle className="SavePaletteDialog-title">
-          Choose a palette name
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText className="SavePaletteDialog-text">
-            Note: palette names must be unique,
-            and a maximum length of 32 characters.
-          </DialogContentText>
+        <ValidatorForm
+          onSubmit={handleSubmit}
+          onError={errors => console.log(errors)}
+        >
+          <DialogTitle className="SavePaletteDialog-title">
+            Choose a palette name
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText className="SavePaletteDialog-text">
+              Note: palette names must be unique,
+              and a maximum length of 32 characters.
+            </DialogContentText>
 
-          {/* Palette name input */}
-          <ValidatorForm
-            onSubmit={handleSubmit}
-            onError={errors => console.log(errors)}
-          >
+            {/* Palette name input */}
             <TextValidator
               label="Palette name"
               onChange={updateNewPaletteName}
@@ -90,14 +90,15 @@ function CreatePaletteNav(props) {
                 'Too long! Max 32 characters.',
                 'No special characters please.'
               ]}
+              autoFocus
             />
-          </ValidatorForm>
+          </DialogContent>
+          <DialogActions>
+            <button className="Btn Btn--exit" onClick={handleClose}>Cancel</button>
+            <button className="Btn Btn--save" type="sumbit">Save Palette</button>
+          </DialogActions>
 
-        </DialogContent>
-        <DialogActions>
-          <button className="Btn Btn--exit" onClick={handleClose}>Cancel</button>
-          <button className="Btn Btn--save" onClick={handleSubmit}>Done</button>
-        </DialogActions>
+        </ValidatorForm>
       </Dialog>
 
     </React.Fragment>

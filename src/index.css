@@ -20,7 +20,7 @@ code {
 .Btn {
   border: none;
   margin: 0;
-  padding: .4rem .6rem .4rem .6rem;
+  padding: .35rem .6rem .4rem .6rem;
   background: transparent;
   border-radius: 4px;
   width: auto;
@@ -51,15 +51,27 @@ code {
   background: rgb(210,210,210);
 }
 
+.Btn--plain:focus {
+  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+}
+
 .Btn--save {
   color: #fff;
-  background: rgb(12,182,8);
+  background: rgb(8, 182, 106);
 }
 
 .Btn--save:hover {
-  background: rgb(10,143,8);
+  background: rgb(9, 204, 119);
+}
+
+.Btn--save:focus {
+  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
 }
 
 .Btn--exit:hover {
   background: rgb(230,230,230);
+}
+
+.Btn--exit:focus {
+  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
 }
