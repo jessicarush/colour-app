@@ -28,27 +28,24 @@ function ColorChip(props) {
 
   return (
     <CopyToClipboard text={color} onCopy={updateCopied}>
-      <div className="ColorChip" style={{ background: color }}>
+      <div className={"ColorChip"} style={{ background: color }}>
 
         <div
-          className={`ColorChip-copy-overlay ${copied ? "show" : "hide"}`}
+          className={`ColorChip-copy-container ${copied && "transform"}`}
           style={{ background: color }}
         >
-          <div
-            className={`ColorChip-copy-msg ${copied ? "show" : ""}`}
-            style={{ color: fontColor }}
-          >
-            <p>Copied {color.toLowerCase()}</p>
-          </div>
-        </div>
-
-        <div className="ColorChip-copy-container">
           <button
             className="ColorChip-copy-btn"
             style={{ color: fontColor, background: btnBgColor }}
           >
             Copy
           </button>
+          <div
+            className={`ColorChip-copy-msg ${copied ? "show" : ""}`}
+            style={{ color: fontColor, background: color }}
+          >
+            <p>Copied {color.toLowerCase()}</p>
+          </div>
         </div>
 
         <div className="ColorChip-info-container">

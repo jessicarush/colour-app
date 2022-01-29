@@ -20,7 +20,6 @@ A practice project built with React.
 
 ## Notes
 
-- ColorChip - improve copy effect animation
 - create palette on mobile
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
