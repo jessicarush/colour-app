@@ -21,7 +21,7 @@
   box-shadow: rgba(0,0,0,.1) 0px 0px 0px 1px, rgba(0,0,0,.1) 0px 0px 10px !important;
 }
 
-.Btn--CreatePaletteTools-add {
+.btn--CreatePaletteTools-add {
   color: #fff;
   background: #000;
   width: 100%;
@@ -33,11 +33,11 @@
   overflow: hidden;
 }
 
-.Btn--CreatePaletteTools-add svg {
+.btn--CreatePaletteTools-add svg {
   transition: transform .5s;
 }
 
-.Btn--CreatePaletteTools-add__chip {
+.btn--CreatePaletteTools-add__chip {
   display: block;
   width: 83%;
   height: 100%;
@@ -48,27 +48,27 @@
   transition: background .3s, width .5s;
 }
 
-.Btn--CreatePaletteTools-add:hover {
+.btn--CreatePaletteTools-add:hover {
   background: rgb(45,47,50);
 }
 
-.Btn--CreatePaletteTools-add:hover svg {
+.btn--CreatePaletteTools-add:hover svg {
   transform: scale(1.2);
 }
 
-.Btn--CreatePaletteTools-add:focus {
+.btn--CreatePaletteTools-add:focus {
   box-shadow: 0 0 1px 3px rgb(193, 204, 200);
 }
 
-.Btn--CreatePaletteTools-add:disabled {
+.btn--CreatePaletteTools-add:disabled {
   background: rgb(99,100,102);
 }
 
-.Btn--CreatePaletteTools-add:disabled svg {
+.btn--CreatePaletteTools-add:disabled svg {
   transform: rotate(45deg);
 }
 
-.Btn--CreatePaletteTools-add:disabled .Btn--CreatePaletteTools-add__chip {
+.btn--CreatePaletteTools-add:disabled .btn--CreatePaletteTools-add__chip {
   width: 3%;
 }
 

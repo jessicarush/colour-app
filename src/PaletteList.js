@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 
 import PaletteChip from './PaletteChip';
+import Footer from './Footer';
 import './css/PaletteList.css';
 
 
 function PaletteList(props) {
+  const { deletePalette } = props;
 
   const palettes = props.seedPalettes.map(p => (
-    <PaletteChip key={uuid()} palette={p} />
+    <PaletteChip key={uuid()} palette={p} deletePalette={deletePalette} />
   ));
 
   return (
@@ -24,7 +26,7 @@ function PaletteList(props) {
         { palettes }
       </div>
       <div className="PaletteList-footer">
-        footer
+        <Footer />
       </div>
     </div>
   );

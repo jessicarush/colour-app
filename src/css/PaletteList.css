@@ -40,6 +40,18 @@
   text-decoration: none;
 }
 
+@media (max-width: 380px) {
+  .PaletteList-header {
+    font-size: calc(6px + 3vw);
+  }
+  .PaletteList-new-btn {
+    font-size: calc(4.5px + 3vw);
+    width: 6ch;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
 .PaletteList-palettes {
   /* first breakpoint */
   --w1: 980px; /* number of columns when over first breakpoint */
@@ -83,5 +95,4 @@
 
 .PaletteList-footer {
   flex: 0 0 auto;
-  background: #fff;
 }

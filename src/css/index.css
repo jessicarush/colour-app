@@ -1,5 +1,7 @@
+/* -- General ---------------------------------------------------------------- */
+
 html {
-  background: white;
+  background: whitesmoke;
 }
 
 body {
@@ -17,7 +19,9 @@ code {
     monospace;
 }
 
-.Btn {
+/* -- Buttons ---------------------------------------------------------------- */
+
+.btn {
   border: none;
   margin: 0;
   padding: .35rem .6rem .4rem .6rem;
@@ -42,36 +46,84 @@ code {
   text-align: center;
 }
 
-.Btn--plain {
+.btn--plain {
   background: rgb(230,230,230);
   font-size: .75rem;
 }
 
-.Btn--plain:hover {
+.btn--plain:hover {
   background: rgb(210,210,210);
 }
 
-.Btn--plain:focus {
+.btn--plain:focus {
   box-shadow: 0 0 1px 3px rgb(193, 204, 200);
 }
 
-.Btn--save {
+.btn--save {
   color: #fff;
   background: rgb(8, 182, 106);
 }
 
-.Btn--save:hover {
+.btn--save:hover {
   background: rgb(9, 204, 119);
 }
 
-.Btn--save:focus {
+.btn--save:focus {
   box-shadow: 0 0 1px 3px rgb(193, 204, 200);
 }
 
-.Btn--exit:hover {
+.btn--delete {
+  color: #fff;
+  background: rgb(235,0,20);
+
+}
+
+.btn--delete:hover {
+  background: rgb(187, 10, 24);
+}
+
+.btn--delete:focus {
+  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+}
+
+.btn--exit:hover {
   background: rgb(230,230,230);
 }
 
-.Btn--exit:focus {
+.btn--exit:focus {
   box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+}
+
+.truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* -- MUI overrides ---------------------------------------------------------- */
+
+.MuiDialog-paper {
+  /* background: rgb(39,34,42); */
+}
+
+.MuiDialogTitle-root {
+  /* color: rgb(255,255,255); */
+  font-size: 1.2rem;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 16px 24px 10px 24px;
+}
+
+.MuiDialogContentText-root {
+  /* color: rgba(255,255,255,.7); */
+  font-size: .9rem;
+}
+
+.MuiDialogContentText-root strong {
+  color: #000;
+  font-weight: 600;
+}
+
+.MuiDialog-root .MuiFormControl-root {
+  margin-top: 1rem;
 }

@@ -44,7 +44,7 @@ function Palette(props) {
       <div className="Palette">
         {/* navbar */}
         <Navbar
-          className="Palette-navbar"
+          NavbarClassName="Palette-navbar"
           level={level}
           updateLevel={updateLevel}
           updateColorFormat={updateColorFormat}

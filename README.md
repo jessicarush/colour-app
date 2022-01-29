@@ -18,19 +18,17 @@ A practice project built with React.
 - [React Router](https://reactrouter.com/docs/en/v6)
 - [react-material-ui-form-validator](https://github.com/NewOldMax/react-material-ui-form-validator)
 
-# Notes
+## Notes
 
-- PaletteList - add some hover effect to palette cards. Un-link palette name.
-- PaletteList - footer
 - ColorChip - improve copy effect animation
 - ColorChip - remove bg from ...more and make color name part of more button
-- reduce font size of title on mobile?
 - create palette on mobile
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
-- design /Notfound
-- like counter using localStorage? (like/dislike without login)
+- hex format in localStorage
 
+## Future features
+- palette like counter (like/dislike without login)
 
 
 ## Getting Started with Create React App

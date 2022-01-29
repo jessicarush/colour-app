@@ -1,0 +1,64 @@
+.NotFound {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+
+}
+
+.NotFound header {
+  padding: 0 20px 0 18px;
+}
+
+.NotFound main {
+  padding: 20px;
+  margin-bottom: 10vh;
+}
+
+.NotFound h1 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.NotFound h2 {
+  font-size: calc(16px + 24vw);
+  font-weight: 100;
+  line-height: 0.85em;
+  margin: 0 0 .1em 0;
+  user-select: none;
+}
+
+.NotFound p {
+  color: rgb(100,100,100)
+}
+
+.NotFound strong {
+  color: #000;
+  font-weight: 500;
+}
+
+.NotFound-colorful .a {
+  color: #fc427b;
+}
+.NotFound-colorful .b {
+  color: #ff9800;
+}
+.NotFound-colorful .c {
+  color: #673ab7;
+}
+.NotFound-colorful .d {
+  color: #58b19f;
+}
+.NotFound-colorful .e {
+  color: #ff5722;
+}
+.NotFound-colorful .f {
+  color: #607d8b;
+}
+.NotFound-colorful .g {
+  color: #2196f3;
+}
+.NotFound-colorful .h {
+  color: #009688;
+}

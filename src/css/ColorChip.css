@@ -111,9 +111,6 @@
   padding: 0 .4rem .3rem .4rem;
   line-height: normal;
   margin: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .ColorChip-info-more {

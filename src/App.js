@@ -20,16 +20,23 @@ function App() {
     setPalettes([...palettes, newPalette]);
   };
 
+  const deletePalette = (paletteToDelete) => {
+    const remainingPalettes = palettes.filter(p => p.id !== paletteToDelete.id);
+    setPalettes(remainingPalettes);
+  };
+
   // Save palettes to localStorage whenever palettes is changed
   useEffect(() => {
     window.localStorage.setItem('palettes', JSON.stringify(palettes));
- }, [palettes]);
+  }, [palettes]);
 
   return (
     <StyledEngineProvider injectFirst>
       <div className="App">
         <Routes>
-          <Route path="/" element={<PaletteList seedPalettes={palettes} />} />
+          <Route path="/" element={
+            <PaletteList deletePalette={deletePalette} seedPalettes={palettes} />}
+          />
           <Route path="/palette/:id" element={<Palette seedPalettes={palettes} />} />
           <Route path="/palette/:paletteId/:colorId">
             {/* Optional URL param for color format */}

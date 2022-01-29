@@ -73,7 +73,7 @@ function ColorShades(props) {
         {/* navbar */}
         <Navbar
           colorFormat={colorFormat}
-          className="ColorShades-navbar"
+          NavbarClassName="ColorShades-navbar"
           updateColorFormat={updateColorFormat}
         />
 

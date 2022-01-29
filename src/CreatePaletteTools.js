@@ -100,12 +100,12 @@ function CreatePaletteTools(props) {
         />
         <button
           type="submit"
-          className="Btn Btn--CreatePaletteTools-add"
+          className="btn btn--CreatePaletteTools-add"
           title="Add colour"
           disabled={paletteIsFull}
         >
           <span
-            className="Btn--CreatePaletteTools-add__chip"
+            className="btn--CreatePaletteTools-add__chip"
             style={{ background: currentColor }}
           ></span>
           <AddIcon />
@@ -129,10 +129,10 @@ function CreatePaletteTools(props) {
       )}
 
       <div className="CreatePaletteTools-btn-set">
-        <button className="Btn Btn--plain" onClick={setRandomColor}>
+        <button className="btn btn--plain" onClick={setRandomColor}>
           Random colour
         </button>
-        <button className="Btn Btn--plain" onClick={clearPalette}>
+        <button className="btn btn--plain" onClick={clearPalette}>
           Clear palette
         </button>
       </div>

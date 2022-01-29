@@ -16,7 +16,7 @@ function CreatePaletteNav(props) {
   const { handleSavePalette, seedPalettes } = props;
   // state
   const [newPaletteName, setNewPaletteName] = useState('');
-  const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const updateNewPaletteName = (e) => {
     setNewPaletteName(e.target.value);
@@ -27,11 +27,11 @@ function CreatePaletteNav(props) {
   };
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setDialogOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setDialogOpen(false);
   }
 
   /* Custom validators for TextValidator ----------------------------------- */
@@ -46,24 +46,24 @@ function CreatePaletteNav(props) {
 
       <h1 className="CreatePaletteNav-header">Create a palette</h1>
       <Stack spacing={.5} direction="row">
-        <Link to={"/"} className="Btn Btn--exit">
+        <Link to={"/"} className="btn btn--exit">
           Close
         </Link>
-        <button className="Btn Btn--save" onClick={handleClickOpen}>
+        <button className="btn btn--save" onClick={handleClickOpen}>
           Save
         </button>
       </Stack>
 
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={dialogOpen} onClose={handleClose}>
         <ValidatorForm
           onSubmit={handleSubmit}
           onError={errors => console.log(errors)}
         >
-          <DialogTitle className="SavePaletteDialog-title">
+          <DialogTitle>
             Choose a palette name
           </DialogTitle>
           <DialogContent>
-            <DialogContentText className="SavePaletteDialog-text">
+            <DialogContentText>
               Note: palette names must be unique,
               and a maximum length of 32 characters.
             </DialogContentText>
@@ -94,8 +94,8 @@ function CreatePaletteNav(props) {
             />
           </DialogContent>
           <DialogActions>
-            <button className="Btn Btn--exit" onClick={handleClose}>Cancel</button>
-            <button className="Btn Btn--save" type="sumbit">Save Palette</button>
+            <button className="btn btn--exit" onClick={handleClose}>Cancel</button>
+            <button className="btn btn--save" type="sumbit">Save Palette</button>
           </DialogActions>
 
         </ValidatorForm>

@@ -47,7 +47,7 @@ const SortableChip = SortableElement((props) => {
   return (
     <div className="SortableChip" style={{ background: color }}>
       <div className="SortableChip-info-container">
-        <h2 className="SortableChip-info-name" style={{ color: fontColor }} title={color}>
+        <h2 className="SortableChip-info-name truncate" style={{ color: fontColor }} title={color}>
           {name}
         </h2>
         <button

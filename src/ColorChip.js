@@ -52,7 +52,7 @@ function ColorChip(props) {
         </div>
 
         <div className="ColorChip-info-container">
-          <h2 className="ColorChip-info-name" style={{ color: fontColor }}>
+          <h2 className="ColorChip-info-name truncate" style={{ color: fontColor }}>
             {name}
           </h2>
 

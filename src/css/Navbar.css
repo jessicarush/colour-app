@@ -36,7 +36,7 @@
   min-width: 75px;
   max-width: 300px;
   align-self: center;
-  padding-right: 20px;
+  padding-right: 30px;
 }
 
 .Navbar-format {
@@ -49,6 +49,9 @@
 }
 
 @media (max-width: 600px) {
+  .Navbar-header {
+    font-size: calc(13px + 1vw);
+  }
   .Palette-navbar {
     flex-wrap: wrap;
     background: rgb(247,247,247);

@@ -11,12 +11,12 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
-  /* background: rgb(250,250,250); */
   background: linear-gradient(
     to bottom,
     rgb(255,255,255), 85%,
     rgb(248,248,248)
   );
+  cursor: pointer;
 }
 
 .PaletteChip-color {
@@ -25,9 +25,16 @@
   height: 2rem;
 }
 
-.PaletteChip-name {
+.PaletteChip-info {
   flex: 0 0 auto;
   background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.PaletteChip-name {
   color: rgb(100, 100, 100);
   font-weight: 500;
   font-size: .65rem;
@@ -37,7 +44,13 @@
   width: 100%;
 }
 
-.PaletteChip-link {
-  text-decoration: none;
-  color: inherit;
+.PaletteChip-trash-btn {
+  font-size: .85rem;
+  color:rgb(170,170,170);
+  transition: color .3s, font-size .3s;
+}
+
+.PaletteChip-trash-btn:hover {
+  color: #eb2f06;
+  font-size: 1.1rem;
 }
