@@ -21,7 +21,6 @@ A practice project built with React.
 ## Notes
 
 - ColorChip - improve copy effect animation
-- ColorChip - remove bg from ...more and make color name part of more button
 - create palette on mobile
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated

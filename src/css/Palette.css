@@ -9,6 +9,7 @@
   flex: 0 0 auto;
 }
 
+/* NOTE: this breakpoint is used in a @media style in ColorChip.css */
 .Palette-colors {
   /* breakpoint */
   --w: 576px;

@@ -4,23 +4,16 @@
   position: relative;
 }
 
-.ColorChip:hover .copy-btn {
-  opacity: 1;
-}
-
 .ColorChip-copy-overlay {
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
   position: absolute;
-  transform: scale(1);
-  transition: transform .2s ease-in-out;
+  transition: transform .5s;
 }
 
 .ColorShades .ColorChip-copy-overlay {
@@ -29,7 +22,14 @@
 
 .ColorChip-copy-overlay.show {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
+  z-index: 5;
+}
+
+.ColorChip-copy-overlay.hide {
+  transition: transform .5s, opacity .5s;
+  opacity: 0;
+  transform: scale(1);
   z-index: 5;
 }
 
@@ -37,14 +37,14 @@
   box-sizing: border-box;
   width: 100%;
   /* color: #fff; */
-  font-size: .7rem;
+  font-size: .8rem;
   font-weight: 500;
   line-height: 1.2em;
   text-align: center;
   opacity: 0;
   padding: 0.35rem;
   transition: opacity .3s ease-in-out;
-  transition-delay: 0.15s;
+  transition-delay: 0.2s;
 }
 
 .ColorChip-copy-msg.show {
@@ -55,29 +55,36 @@
   margin: 0;
 }
 
-/* To match breakpoint in .Palette-colors */
-@media (max-width: 450px) {
-  .ColorChip-copy-overlay {
-    justify-content: flex-start;
-  }
+.ColorChip-copy-container {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Hacky to align copy btn with copy msg */
+  padding-top: 20px;
+  box-sizing: border-box;
+}
 
+/* To match breakpoint in .Palette-colors (Palette.css) */
+@media (max-width: 576px) {
+  .ColorChip-copy-overlay {
+    /* justify-content: flex-start; */
+  }
   .ColorChip-copy-overlay.show {
     transform: scale(1.3);
     transform-origin: bottom center;
     z-index: 0;
   }
-
-  .ColorChip-copy-msg {
-    font-size: .6rem;
+  .ColorChip-copy-overlay.hide {
+    z-index: 0;
   }
-
-}
-
-.ColorChip-copy-container {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .ColorChip-copy-msg {
+    font-size: .65rem;
+    padding-top: .4rem;
+  }
+  .ColorChip-copy-container {
+    padding-top: 0;
+  }
 }
 
 .ColorChip-copy-btn {
@@ -94,7 +101,11 @@
   font-size: .75rem;
   font-weight: 500;
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .6s;
+}
+
+.ColorChip:hover .ColorChip-copy-btn {
+  opacity: 1;
 }
 
 .ColorChip-info-container {
@@ -104,6 +115,10 @@
   align-items: baseline;
 }
 
+.ColorChip-info-container a {
+  text-decoration: none;
+}
+
 .ColorChip-info-name {
   text-transform: uppercase;
   font-weight: 600;
@@ -111,6 +126,7 @@
   padding: 0 .4rem .3rem .4rem;
   line-height: normal;
   margin: 0;
+  z-index: 0;
 }
 
 .ColorChip-info-more {
@@ -128,4 +144,11 @@
   font-size: clamp(8px, 1vw, 10px);
   font-weight: 600;
   z-index: 0;
+  white-space: nowrap;
+  transform-origin: bottom right;
+  transition: transform .3s;
+}
+
+.ColorChip-info-more:hover {
+  transform: scale(1.15);
 }

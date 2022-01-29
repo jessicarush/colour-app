@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import chroma from 'chroma-js';
@@ -31,7 +31,7 @@ function ColorChip(props) {
       <div className="ColorChip" style={{ background: color }}>
 
         <div
-          className={`ColorChip-copy-overlay ${copied ? "show" : ""}`}
+          className={`ColorChip-copy-overlay ${copied ? "show" : "hide"}`}
           style={{ background: color }}
         >
           <div
@@ -61,10 +61,10 @@ function ColorChip(props) {
             <Link
               to={`/palette/${paletteId}/${colorId}/${colorFormat}`}
               className="ColorChip-info-more"
-              style={{ color: fontColor, background: btnBgColor }}
+              style={{ color: fontColor}}
               onClick={e => { e.stopPropagation() }}
             >
-              &hellip;More
+              More +
             </Link>
           )}
         </div>
