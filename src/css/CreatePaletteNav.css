@@ -7,31 +7,30 @@
   padding-right: 1rem;
 }
 
-.CreatePaletteNav-close,
-.CreatePaletteNav-save {
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 50%;
-  box-sizing: border-box;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .CreatePaletteNav-close .short,
 .CreatePaletteNav-save .short {
   display: none;
   line-height: .85rem;
 }
 
-@media (max-width:550px) {
+@media (max-width:600px) {
   .CreatePaletteNav-header {
     display: none;
   }
   .CreatePaletteNav-btns {
     margin-left: auto;
   }
+  .CreatePaletteNav-close,
+  .CreatePaletteNav-save {
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 50%;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   .CreatePaletteNav-close .long,
   .CreatePaletteNav-save .long {
     display: none;
