@@ -9,7 +9,7 @@
   font-weight: 500;
   font-size: 1.2rem;
   margin: 0;
-  padding: 1rem 15px 1.1rem 18px;
+  padding: 1rem 15px 1rem 18px;
   color: #000;
   background: #fff;
 }
@@ -21,6 +21,12 @@
 
 .Navbar-head {
   flex: 0 0 auto;
+}
+
+.Navbar-slider-items {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .Navbar-slider-label {
@@ -41,55 +47,54 @@
 
 .Navbar-format {
   flex: 1 1 auto;
-  min-width: 70px;
-  max-width: 85px;
+  min-width: 4rem;
+  max-width: 4rem;
   padding-right: 20px;
   padding-left: 10px;
   margin-left: auto;
+  margin-bottom: -4px;
 }
 
-@media (max-width: 600px) {
+/* MUI dropdown icon override */
+.Navbar-format svg {
+  top: 0;
+}
+
+@media (max-width: 576px) {
   .Navbar-header {
     font-size: calc(13px + 1vw);
   }
   .Palette-navbar {
     flex-wrap: wrap;
+  }
+  .Navbar-format {
+    order: 2;
+  }
+  .Palette-navbar .Navbar-slider-items {
+    order: 3;
+    width: 100%;
+    padding: 15px 0;
     background: rgb(247,247,247);
   }
-  .Palette-navbar .Navbar-head {
-    width: 100%;
-  }
-  .Palette-navbar .Navbar-format {
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+  .Navbar-slider {
+    max-width: 100%;
+    padding-right: 20px;
   }
 }
 
-@media (max-width: 380px) {
-  .Palette-navbar {
-    padding-bottom: 1.4rem;
-  }
-  .Palette-navbar .Navbar-head {
-    order: 1;
-  }
-  .Palette-navbar .Navbar-slider-label {
-    order: 3;
-  }
-  .Palette-navbar .Navbar-slider {
-    order: 4;
-  }
+@media (max-width: 300px) {
   .Palette-navbar .Navbar-format {
-    order: 2;
     padding-left: 20px;
     width: 100%;
     max-width: 100%;
-    padding-top: .75rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5px
+  }
+  .Palette-navbar .Navbar-slider-items {
+    background: #fff;
   }
 
   .ColorShades-navbar {
     flex-wrap: wrap;
-    background: rgb(247,247,247);
   }
   .ColorShades-navbar .Navbar-head {
     width: 100%;
@@ -98,8 +103,7 @@
     padding-left: 20px;
     width: 100%;
     max-width: 100%;
-    padding-top: .65rem;
-    padding-bottom: .65rem;
+    padding-bottom: .5rem;
   }
 }
 

@@ -7,6 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Stack from '@mui/material/Stack';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 
 import './css/CreatePaletteNav.css';
 
@@ -45,12 +47,14 @@ function CreatePaletteNav(props) {
     <React.Fragment>
 
       <h1 className="CreatePaletteNav-header">Create a palette</h1>
-      <Stack spacing={.5} direction="row">
-        <Link to={"/"} className="btn btn--exit">
-          Close
+      <Stack spacing={.5} direction="row" className="CreatePaletteNav-btns">
+        <Link to={"/"} className="CreatePaletteNav-close btn btn--exit">
+          <span className="long">Close</span>
+          <span className="short"><CloseIcon fontSize="small" /></span>
         </Link>
-        <button className="btn btn--save" onClick={handleClickOpen}>
-          Save
+        <button className="CreatePaletteNav-save btn btn--save" onClick={handleClickOpen}>
+          <span className="long">Save</span>
+          <span className="short"><CheckIcon fontSize="small" /></span>
         </button>
       </Stack>
 
@@ -95,7 +99,7 @@ function CreatePaletteNav(props) {
           </DialogContent>
           <DialogActions>
             <button className="btn btn--exit" onClick={handleClose}>Cancel</button>
-            <button className="btn btn--save" type="sumbit">Save Palette</button>
+            <button className="btn btn--save" type="submit">Save Palette</button>
           </DialogActions>
 
         </ValidatorForm>

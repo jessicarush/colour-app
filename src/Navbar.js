@@ -61,7 +61,7 @@ function Navbar(props) {
 
       {/* The slider is only rendered when level prop exists (Palette.js) */}
       {level && (
-        <React.Fragment>
+        <div className="Navbar-slider-items">
           <div className="Navbar-slider-label">
             <span>Level: {level} </span>
           </div>
@@ -74,19 +74,11 @@ function Navbar(props) {
               onAfterChange={updateLevel}
             />
           </div>
-        </React.Fragment>
+        </div>
       )}
 
       <div className="Navbar-format">
         <FormControl variant="standard" fullWidth>
-          <InputLabel
-            id="color-format-label"
-            sx={{
-              fontSize: '.85rem'
-            }}
-          >
-            Format
-          </InputLabel>
           <Select
             labelId="color-format-label"
             id="color-format"
@@ -94,8 +86,11 @@ function Navbar(props) {
             label="color-format"
             onChange={handleColorFormatChange}
             sx={{
-              fontSize: '.75rem',
-              fontWeight: '600'
+              fontSize: '.8rem',
+              fontWeight: '600',
+              ':before': { borderBottomColor: '#fff' },
+              // underline when selected
+              // ':after': { borderBottomColor: 'green' },
             }}
           >
             <MenuItem value="hex">HEX</MenuItem>

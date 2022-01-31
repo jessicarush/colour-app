@@ -46,9 +46,11 @@
   }
   .PaletteList-new-btn {
     font-size: calc(4.5px + 3vw);
-    width: 6ch;
     overflow: hidden;
     white-space: nowrap;
+  }
+  .PaletteList-new-btn span {
+    display: none;
   }
 }
 
