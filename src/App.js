@@ -21,8 +21,13 @@ function App() {
   };
 
   const deletePalette = (paletteToDelete) => {
-    const remainingPalettes = palettes.filter(p => p.id !== paletteToDelete.id);
-    setPalettes(remainingPalettes);
+    // Fade out the palette first by applying a class
+    document.getElementById(paletteToDelete.id).style.opacity = 0;
+    // The timeout delay should match the transition duration in PaletteChip.css
+    setTimeout(() => {
+      const remainingPalettes = palettes.filter(p => p.id !== paletteToDelete.id);
+      setPalettes(remainingPalettes);
+    }, 600);
   };
 
   // Save palettes to localStorage whenever palettes is changed

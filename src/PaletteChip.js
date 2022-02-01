@@ -27,7 +27,11 @@ function PaletteChip(props) {
 
   const handleDelete = () => {
     deletePalette(palette);
-    // setDialogOpen(false);
+    // Normally we wouldn't need this as the component will re-render
+    // with the default false state, but we are triggering a fade-out
+    // transition first using setTimeout in deletePalette. As a result
+    // we close the dialog right away so we can see the fadeout.
+    setDialogOpen(false);
   };
 
   const gotoPalette = () => {
@@ -44,7 +48,7 @@ function PaletteChip(props) {
   ));
 
   return (
-    <div className="PaletteChip">
+    <div className="PaletteChip" id={palette.id}>
       <div className="PaletteChip-colors" onClick={gotoPalette}>
         {colors}
       </div>

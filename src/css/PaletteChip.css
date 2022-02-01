@@ -3,6 +3,8 @@
   flex-direction: column;
   border-radius: 5px;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity .6s ease-in-out;
 }
 
 .PaletteChip-colors {
