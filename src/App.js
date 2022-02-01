@@ -44,7 +44,7 @@ function App() {
     <StyledEngineProvider injectFirst>
       <div className="App">
         <TransitionGroup component={null}>
-          <CSSTransition key={location.key} classNames="fade" timeout={600}>
+          <CSSTransition key={location.key} classNames="fade" timeout={400}>
             <Routes location={location}>
               <Route
                 path="/"

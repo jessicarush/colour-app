@@ -26,6 +26,7 @@ function CreatePaletteNav(props) {
 
   const handleSubmit = () => {
     handleSavePalette(newPaletteName);
+    setDialogOpen(false);
   };
 
   const handleClickOpen = () => {
