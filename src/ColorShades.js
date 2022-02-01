@@ -69,6 +69,8 @@ function ColorShades(props) {
     ));
 
     renderElements = (
+      <div className="page-transition-helper">
+
       <div className="ColorShades">
         {/* navbar */}
         <Navbar
@@ -89,6 +91,8 @@ function ColorShades(props) {
             <Link to={`/palette/${paletteId}`}>{paletteName}</Link>
           </h2>
         </footer>
+      </div>
+
       </div>
     )
   }

@@ -7,6 +7,8 @@ function NotFound() {
   let location = useLocation();
 
   return (
+    <div className="page-transition-helper">
+
     <div className="NotFound">
       <header>
         <h1 className="PaletteList-header">
@@ -28,6 +30,8 @@ function NotFound() {
         <p className="">Nothing exists at <strong>{location.pathname}</strong></p>
       </main>
       <Footer />
+    </div>
+
     </div>
   );
 }

@@ -41,24 +41,28 @@ function Palette(props) {
     ));
 
     renderElements = (
-      <div className="Palette">
-        {/* navbar */}
-        <Navbar
-          NavbarClassName="Palette-navbar"
-          level={level}
-          updateLevel={updateLevel}
-          updateColorFormat={updateColorFormat}
-        />
+      <div className="page-transition-helper">
 
-        {/* color chips */}
-        <main className="Palette-colors">
-          {colorChips}
-        </main>
+        <div className="Palette">
+          {/* navbar */}
+          <Navbar
+            NavbarClassName="Palette-navbar"
+            level={level}
+            updateLevel={updateLevel}
+            updateColorFormat={updateColorFormat}
+          />
 
-        {/* footer */}
-        <footer className="Palette-footer">
-          <h2 className="Palette-footer-name">{fullPalette.paletteName}</h2>
-        </footer>
+          {/* color chips */}
+          <main className="Palette-colors">
+            {colorChips}
+          </main>
+
+          {/* footer */}
+          <footer className="Palette-footer">
+            <h2 className="Palette-footer-name">{fullPalette.paletteName}</h2>
+          </footer>
+        </div>
+
       </div>
     )
   }

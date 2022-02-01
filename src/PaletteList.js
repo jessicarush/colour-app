@@ -14,20 +14,24 @@ function PaletteList(props) {
   ));
 
   return (
-    <div className="PaletteList">
-      <div className="PaletteList-head">
-        <h1 className="PaletteList-header">
-          <Link to={"/"}>&lt;Colour Palettes /&gt;</Link>
-        </h1>
-        <Link to={"/create"} className="PaletteList-new-btn">+ create<span> palette</span></Link>
+    <div className="page-transition-helper">
+
+      <div className="PaletteList">
+        <div className="PaletteList-head">
+          <h1 className="PaletteList-header">
+            <Link to={"/"}>&lt;Colour Palettes /&gt;</Link>
+          </h1>
+          <Link to={"/create"} className="PaletteList-new-btn">+ create<span> palette</span></Link>
+        </div>
+        <div className="PaletteList-palettes">
+          {/* Palettes go here */}
+          {palettes}
+        </div>
+        <div className="PaletteList-footer">
+          <Footer />
+        </div>
       </div>
-      <div className="PaletteList-palettes">
-        {/* Palettes go here */}
-        { palettes }
-      </div>
-      <div className="PaletteList-footer">
-        <Footer />
-      </div>
+
     </div>
   );
 }

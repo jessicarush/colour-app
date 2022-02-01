@@ -1,4 +1,6 @@
 .CreatePalette {
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .CreatePalette-toolbar {

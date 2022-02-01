@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import seedPalettes from './seedPalettes';
 import PaletteList from './PaletteList';
@@ -15,6 +16,8 @@ function App() {
   // First check if there is any data in localStorage
   const storedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
   const [palettes, setPalettes] = useState(storedPalettes || seedPalettes);
+
+  const location = useLocation();
 
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
@@ -38,21 +41,27 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <div className="App">
-        <Routes>
-          <Route path="/" element={
-            <PaletteList deletePalette={deletePalette} seedPalettes={palettes} />}
-          />
-          <Route path="/palette/:id" element={<Palette seedPalettes={palettes} />} />
-          <Route path="/palette/:paletteId/:colorId">
-            {/* Optional URL param for color format */}
-            <Route path=":format" element={<ColorShades seedPalettes={palettes} />} />
-            <Route path="" element={<ColorShades seedPalettes={palettes} />} />
-          </Route>
-          <Route path="/create" element={
-            <CreatePalette savePalette={savePalette} seedPalettes={palettes} />
-          } />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+
+        <TransitionGroup component={null}>
+          <CSSTransition key={location.key} classNames="fade" timeout={400}>
+            <Routes location={location}>
+              <Route path="/" element={
+                <PaletteList deletePalette={deletePalette} seedPalettes={palettes} />}
+              />
+              <Route path="/palette/:id" element={<Palette seedPalettes={palettes} />} />
+              <Route path="/palette/:paletteId/:colorId">
+                {/* Optional URL param for color format */}
+                <Route path=":format" element={<ColorShades seedPalettes={palettes} />} />
+                <Route path="" element={<ColorShades seedPalettes={palettes} />} />
+              </Route>
+              <Route path="/create" element={
+                <CreatePalette savePalette={savePalette} seedPalettes={palettes} />
+              } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </CSSTransition>
+        </TransitionGroup>
+
       </div>
     </StyledEngineProvider>
   );

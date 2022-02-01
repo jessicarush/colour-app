@@ -1,5 +1,6 @@
 .PaletteList {
   height: 100vh;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
