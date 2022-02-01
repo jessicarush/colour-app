@@ -121,8 +121,6 @@ function CreatePalette(props) {
   }
 
   return (
-    <div className="page-transition-helper">
-
     <Box className="CreatePalette" sx={{ display: 'flex' }}>
       {/* MUI App bar -------------------------------------------------------- */}
 
@@ -191,8 +189,6 @@ function CreatePalette(props) {
 
       </Main>
     </Box>
-
-    </div>
   );
 }
 

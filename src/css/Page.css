@@ -1,0 +1,11 @@
+/*
+The page-transition-helper class should wrap any page that will be
+transitioned so that they lay on top of each other when transitioning
+*/
+
+.Page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}

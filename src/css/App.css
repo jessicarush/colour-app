@@ -9,13 +9,14 @@ have very specific meanings to <CSSTransition />
 
 .fade-enter {
   opacity: 0;
-  /* transform: translate(0, 25px); */
+  /* transform: translate(-100%, 0); */
   z-index: 9999;
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
-  /* transform: translate(0, 0); */
   transition: opacity 400ms ease-out;
+  /* transform: translate(0, 0); */
+  /* transition: transform 600ms ease-out; */
 }
 .fade-exit {
   opacity: 1;
@@ -23,18 +24,7 @@ have very specific meanings to <CSSTransition />
 }
 .fade-exit.fade-exit-active {
   opacity: 0;
-  /* transform: translate(0, 30px); */
   transition: opacity 400ms ease-out;
-}
-
-/*
-The page-transition-helper class should wrap any page that will be
-transitioned so that they lay on top of each other when transitioning
-*/
-
-.page-transition-helper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  /* transform: translate(100%, 0); */
+  /* transition: transform 600ms ease-out; */
 }
