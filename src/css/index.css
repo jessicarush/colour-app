@@ -56,7 +56,7 @@ code {
 }
 
 .btn--plain:focus {
-  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+  box-shadow: 0 0 1px 3px rgba(158, 217, 252, 0.9);
 }
 
 .btn--save {
@@ -69,7 +69,7 @@ code {
 }
 
 .btn--save:focus {
-  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+  box-shadow: 0 0 1px 3px rgba(158, 217, 252, 0.9);
 }
 
 .btn--delete {
@@ -83,7 +83,7 @@ code {
 }
 
 .btn--delete:focus {
-  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+  box-shadow: 0 0 1px 3px rgba(255, 187, 210, 0.9);
 }
 
 .btn--exit:hover {
@@ -91,7 +91,7 @@ code {
 }
 
 .btn--exit:focus {
-  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+  box-shadow: 0 0 1px 3px rgba(158, 217, 252, 0.9);
 }
 
 .truncate {

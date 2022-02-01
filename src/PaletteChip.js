@@ -77,10 +77,10 @@ function PaletteChip(props) {
         </DialogContent>
         <DialogActions>
           <button className="btn btn--exit" onClick={handleDialogClose}>
-            Shit no, cancel!
+            No, cancel
           </button>
           <button className="btn btn--delete" onClick={handleDelete}>
-            Yes, delete muthafukka!
+            Yes, delete
           </button>
         </DialogActions>
       </Dialog>

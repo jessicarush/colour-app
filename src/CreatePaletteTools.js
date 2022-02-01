@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SketchPicker, ChromePicker } from 'react-color';
+import { HexColorPicker } from "react-colorful";
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import AddIcon from '@mui/icons-material/Add';
 import chroma from 'chroma-js';
@@ -23,7 +23,7 @@ function CreatePaletteTools(props) {
   const paletteIsFull = colors.length >= maxColors;
 
   const handlePickerChange = (color) => {
-    setCurrentColor(color.hex);
+    setCurrentColor(color);
   };
 
   const updateNewColorName = (e) => {
@@ -65,13 +65,21 @@ function CreatePaletteTools(props) {
       <p className="CreatePaletteTools-subheader">
         to build your new palette.
       </p>
-      <ChromePicker
+
+      <HexColorPicker
         color={currentColor}
-        className="CreatePaletteTools-picker"
-        onChangeComplete={handlePickerChange}
-        disableAlpha={true}
-        width="230px"
+        onChange={handlePickerChange}
       />
+
+      <div className="CreatePaletteTools-btn-set">
+        <button className="btn btn--plain" onClick={setRandomColor}>
+          Random colour
+        </button>
+        <button className="btn btn--plain" onClick={clearPalette}>
+          Clear palette
+        </button>
+      </div>
+
       <ValidatorForm
         onSubmit={handleAddNewColor}
         onError={errors => console.log(errors)}
@@ -83,7 +91,7 @@ function CreatePaletteTools(props) {
           variant="outlined"
           value={newColorName}
           size="small"
-          sx={{ margin: '1rem 0 .75rem 0' }}
+          sx={{ margin: '.75rem 0 .75rem 0' }}
           fullWidth
           validators={[
             'required',
@@ -127,15 +135,6 @@ function CreatePaletteTools(props) {
           It's called {duplicateColor}.
         </p>
       )}
-
-      <div className="CreatePaletteTools-btn-set">
-        <button className="btn btn--plain" onClick={setRandomColor}>
-          Random colour
-        </button>
-        <button className="btn btn--plain" onClick={clearPalette}>
-          Clear palette
-        </button>
-      </div>
     </div>
   );
 }

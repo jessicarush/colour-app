@@ -17,8 +17,9 @@
   line-height: normal;
 }
 
-.CreatePaletteTools-picker {
-  box-shadow: rgba(0,0,0,.1) 0px 0px 0px 1px, rgba(0,0,0,.1) 0px 0px 10px !important;
+/* Override react-colorful color picker width */
+.CreatePaletteTools .react-colorful {
+  width: auto;
 }
 
 .btn--CreatePaletteTools-add {
@@ -57,7 +58,7 @@
 }
 
 .btn--CreatePaletteTools-add:focus {
-  box-shadow: 0 0 1px 3px rgb(193, 204, 200);
+  box-shadow: 0 0 1px 3px rgba(193, 204, 200, .8);
 }
 
 .btn--CreatePaletteTools-add:disabled {
@@ -92,7 +93,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 3px;
+  gap: 5px;
   padding-top: .8rem;
 }
 

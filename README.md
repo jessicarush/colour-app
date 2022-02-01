@@ -20,11 +20,9 @@ A practice project built with React.
 
 ## Notes
 
-- create palette on mobile
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
 - hex format in localStorage
-- better looking format slect ui
 
 ## Future features
 - palette like counter (like/dislike without login)
