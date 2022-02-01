@@ -74,7 +74,7 @@
 .ColorChip-info-name {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: clamp(7.5px, 1vw, 8.5px);
+  font-size: clamp(8px, 1vw, 8.5px);
   padding: 0 .4rem .3rem .4rem;
   line-height: normal;
   margin: 0;
@@ -91,7 +91,7 @@
   border-radius: 3px 0 0 0;
   font: inherit;
   cursor: pointer;
-  font-size: clamp(8px, 1vw, 10px);
+  font-size: 9px;
   font-weight: 600;
   z-index: 0;
   white-space: nowrap;

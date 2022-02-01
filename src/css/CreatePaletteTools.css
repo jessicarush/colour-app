@@ -58,7 +58,7 @@
 }
 
 .btn--CreatePaletteTools-add:focus {
-  box-shadow: 0 0 1px 3px rgba(193, 204, 200, .8);
+  box-shadow: 0 0 1px 3px rgba(193, 204, 200, .5);
 }
 
 .btn--CreatePaletteTools-add:disabled {

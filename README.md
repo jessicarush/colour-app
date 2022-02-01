@@ -14,21 +14,22 @@ A practice project built with React.
 - [react-form-validator-core](https://github.com/NewOldMax/react-form-validator-core)
 - [react-transition-group](https://github.com/reactjs/react-transition-group)
 - [rc-slider](https://github.com/react-component/slider)
-- [React Color](https://casesandberg.github.io/react-color/)
+- [react-colorful](https://github.com/omgovich/react-colorful)
 - [React Router](https://reactrouter.com/docs/en/v6)
 - [react-material-ui-form-validator](https://github.com/NewOldMax/react-material-ui-form-validator)
 
-## Notes
+## Todo...
 
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
 - hex format in localStorage
 
 ## Future features
+
 - palette like counter (like/dislike without login)
+- create new palette from existing palette
 
-
-## Getting Started with Create React App
+## Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
