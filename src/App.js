@@ -12,6 +12,7 @@ import CreatePalette from "./CreatePalette";
 import NotFound from "./NotFound";
 import "./css/App.css";
 
+
 function App() {
   // First check if there is any data in localStorage
   const storedPalettes = JSON.parse(window.localStorage.getItem("palettes"));

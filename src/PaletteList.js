@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { v4 as uuid } from 'uuid';
 
 import PaletteChip from './PaletteChip';
 import Footer from './Footer';
@@ -10,7 +9,7 @@ function PaletteList(props) {
   const { deletePalette } = props;
 
   const palettes = props.seedPalettes.map(p => (
-    <PaletteChip key={uuid()} palette={p} deletePalette={deletePalette} />
+    <PaletteChip key={p.id} palette={p} deletePalette={deletePalette} />
   ));
 
   return (

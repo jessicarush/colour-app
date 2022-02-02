@@ -23,6 +23,8 @@ A practice project built with React.
 - replace react-sortable-hoc with dnd-kit
 - replace rc-slider with something not deprecated
 - hex format in localStorage
+- content when all palettes deleted, with option to restore defaults
+- review font sizes on mobile
 
 ## Future features
 
