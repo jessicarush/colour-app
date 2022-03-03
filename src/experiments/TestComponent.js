@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import React, { Component } from "react";
+// import React, { Component } from 'react';
 import TestPureChild from "./TestPureChild";
 
 function TestComponent() {
