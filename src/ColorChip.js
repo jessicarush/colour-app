@@ -59,7 +59,7 @@ function ColorChip(props) {
               to={`/palette/${paletteId}/${colorId}/${colorFormat}`}
               className="ColorChip-info-more"
               style={{ color: fontColor}}
-              onClick={e => { e.stopPropagation() }}
+              onClick={e => e.stopPropagation()}
             >
               More +
             </Link>
